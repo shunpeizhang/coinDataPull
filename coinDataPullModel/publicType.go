@@ -1,0 +1,49 @@
+package coinDataPullModel
+
+
+
+const (
+	COINTYPE_BTC_USDT = iota
+	COINTYPE_ETH_USDT
+
+	COINTYPE_MAX
+)
+
+const (
+	COINSRCTIMETYPE_1MIN = iota
+	COINSRCTIMETYPE_5MIN
+	COINSRCTIMETYPE_15MIN
+	COINSRCTIMETYPE_30MIN
+	COINSRCTIMETYPE_60MIN
+	COINSRCTIMETYPE_1DAY
+
+	COINSRCTIMETYPE_MAX
+)
+
+
+//取源数据相关宏定义
+const (
+	COINDATAGET_LIMTCOUNT = 2000  //单次取数据最大上限
+	COINDATAGET_COUNTPRE = 100    //程序每次最多取多少数据比较好
+	COINDATAGET_DATAAddRATE = 0.1 //每次请求冗余多少数据比较好(本来需要取100，但取110比较好，防止中间有丢失)
+
+)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

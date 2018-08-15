@@ -1,0 +1,23 @@
+mysqlconfig:
+    host: 47.95.215.124
+    port: 3306
+    username: readonly
+    passwd: 5Ln|Dbr2dcc~Nv3uok(z
+    mysqlconnmaxidle: 100         #mysql连接池最大连接数量
+    mysqlconnmaxopen: 50          #mysql连接池最大已连接的数量
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
