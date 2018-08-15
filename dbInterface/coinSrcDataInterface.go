@@ -4,7 +4,6 @@ import (
 	"coinDataPull/thirdLib/huobiapi/models"
 	"fmt"
 	"coinDataPull/coinDataPullUtil"
-	"github.com/golang/glog"
 )
 
 
@@ -18,7 +17,7 @@ func Insert_CoinKLineData(data *models.KLineData, tableName string, coinType int
 		return nil
 	}
 
-	glog.Info(sql)
+	fmt.Println(sql)
 
 	return nil
 }

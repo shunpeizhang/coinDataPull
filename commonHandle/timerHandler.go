@@ -80,7 +80,7 @@ func coinDataPull_1day(){
 
 //处理数据获取
 func coinDataPull_commonHandle(coinSrcTimeType int32){
-	fmt.Println("coinSrcTimeType:", coinSrcTimeType)
+	glog.Info("coinSrcTimeType:", coinSrcTimeType)
 
 	needGetCount := coinDataPullModel.COINDATAGET_COUNTPRE * (1 + coinDataPullModel.COINDATAGET_DATAAddRATE)
 	for iCoinTye := coinDataPullModel.COINTYPE_BTC_USDT; coinDataPullModel.COINTYPE_MAX > iCoinTye; iCoinTye++{
