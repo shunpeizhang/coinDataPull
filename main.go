@@ -3,10 +3,11 @@ package  main
 import (
 	"flag"
 	"runtime"
-	"commonCoinLib/dataSource/config"
 	"github.com/golang/glog"
 	"coinDataPull/commonHandle"
 	"time"
+	"coinDataPull/coinDataPullConfig"
+	"coinDataPull/coinDataPullUtil"
 )
 
 func main(){
@@ -16,9 +17,14 @@ func main(){
 	flag.Parse()
 	runtime.GOMAXPROCS(runtime.NumCPU())
 
-	err := config.LoadConfigInfo(confPath)
+	err := coinDataPullConfig.LoadConfigInfo(confPath)
 	if nil != err{
 		glog.Error("config.LoadConfig failed!")
+		return
+	}
+
+	if !coinDataPullUtil.InitMysqlInterface(){
+		glog.Error("coinDataPullUtil.InitMysqlInterface failed!")
 		return
 	}
 

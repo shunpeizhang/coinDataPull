@@ -42,7 +42,7 @@ func GetCoinDataAndpersist(coinType int32, coinSrcTimeType int32, getCount uint3
 	//取数据
 	var ret models.KLineReturn
 	ret = services.GetKLine(coinDataPullConfig.COINTYPE_NAME_MAP[coinType], coinDataPullConfig.COINSRCTIMETYPE_PERIOD_MAP[coinSrcTimeType], int(getCount))
-	if "0" != ret.Status{
+	if "ok" != ret.Status{
 		glog.Error("services.GetKLine failed! ", "coinType:", coinType, " coinSrcTimeType:", coinSrcTimeType, " getCount:", getCount)
 		return errors.New("services.GetKLine failed! ")
 	}
