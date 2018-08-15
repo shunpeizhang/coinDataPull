@@ -3,8 +3,8 @@
 // API KEY
 const (
 	// todo: replace with your own AccessKey and Secret Key
-	ACCESS_KEY string = "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
-	SECRET_KEY string = "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
+	ACCESS_KEY string = ""
+	SECRET_KEY string = ""
 
 	// default to be disabled, please DON'T enable it unless it's officially announced.
 	ENABLE_PRIVATE_SIGNATURE bool = false
@@ -19,7 +19,7 @@ const (
 // API请求地址, 不要带最后的/
 const (
 	//todo: replace with real URLs and HostName
-	MARKET_URL string = ""
-	TRADE_URL  string = ""
-	HOST_NAME  string = ""
+	MARKET_URL string = "https://api.hadax.com"
+	TRADE_URL  string = "https://api.hadax.com"
+	HOST_NAME  string = "api.hadax.com"
 )
