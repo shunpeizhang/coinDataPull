@@ -31,7 +31,7 @@ func init(){
 func MACD(data [coinDataPullModel.MACD_CAL_MAX_COUNT]models.KLineData) ([coinDataPullModel.MACD_CAL_MAX_COUNT]float64, [coinDataPullModel.MACD_CAL_MAX_COUNT]float64, [coinDataPullModel.MACD_CAL_MAX_COUNT]float64, int32, int32, error) {
 	var outBeg int32
 	var outNbElement int32
-	var ret int32
+	//var ret int32
 
 	outMACD := [coinDataPullModel.MACD_CAL_MAX_COUNT]float64{}
 	outMACDSignal := [coinDataPullModel.MACD_CAL_MAX_COUNT]float64{}
@@ -42,15 +42,24 @@ func MACD(data [coinDataPullModel.MACD_CAL_MAX_COUNT]models.KLineData) ([coinDat
 		inReal[iPos] = data[iPos].Close
 	}
 
-	C.ta_MACD(C.int(coinDataPullModel.MACD_CAL_MAX_COUNT), (*C.double)(unsafe.Pointer(&inReal)),
+	retCode := C.MACD(C.int(0), C.int(coinDataPullModel.MACD_CAL_MAX_COUNT - 1),
+		(*C.double)(unsafe.Pointer(&inReal)),
+		C.int(12), C.int(26), C.int(9),
+		(*C.int)(unsafe.Pointer(&outBeg)),
+			(*C.int)(unsafe.Pointer(&outNbElement)),
 		(*C.double)(unsafe.Pointer(&outMACD)),
 		(*C.double)(unsafe.Pointer(&outMACDSignal)),
-		(*C.double)(unsafe.Pointer(&outMACDHist)),
-		(*C.int)(unsafe.Pointer(&outBeg)),
-		(*C.int)(unsafe.Pointer(&outNbElement)),
-		(*C.int)(unsafe.Pointer(&ret)))
+		(*C.double)(unsafe.Pointer(&outMACDHist)))
 
-	fmt.Println(ret)
+	//C.ta_MACD(C.int(coinDataPullModel.MACD_CAL_MAX_COUNT), (*C.double)(unsafe.Pointer(&inReal)),
+	//	(*C.double)(unsafe.Pointer(&outMACD)),
+	//	(*C.double)(unsafe.Pointer(&outMACDSignal)),
+	//	(*C.double)(unsafe.Pointer(&outMACDHist)),
+	//	(*C.int)(unsafe.Pointer(&outBeg)),
+	//	(*C.int)(unsafe.Pointer(&outNbElement)),
+	//	(*C.int)(unsafe.Pointer(&ret)))
+
+	fmt.Println(retCode)
 	fmt.Println(outMACD)
 
 	return outMACD, outMACDSignal, outMACDHist, outBeg, outNbElement, nil
