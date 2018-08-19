@@ -74,6 +74,8 @@ func VerifyMACD(){
 				iCurPos = iCurPos + coinDataPullModel.MACD_CAL_MAX_COUNT
 				break
 			}
+
+			fmt.Println("iCurPos:", iCurPos)
 		}
 	}
 
