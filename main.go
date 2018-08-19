@@ -2,12 +2,7 @@ package  main
 
 
 import (
-	"flag"
-	"runtime"
-	"github.com/golang/glog"
 	"time"
-	"coinDataPull/coinDataPullConfig"
-	"coinDataPull/coinDataPullUtil"
 	"os"
 	"coinDataPull/ta_lib"
 	"coinDataPull/thirdLib/huobiapi/models"
@@ -26,22 +21,22 @@ func test(){
 
 
 func main(){
-	var confPath string
-	flag.StringVar(&confPath, "conf", "./", "If non-empty, load config file in this directory")
-
-	flag.Parse()
-	runtime.GOMAXPROCS(runtime.NumCPU())
-
-	err := coinDataPullConfig.LoadConfigInfo(confPath)
-	if nil != err{
-		glog.Error("config.LoadConfig failed!")
-		return
-	}
-
-	if !coinDataPullUtil.InitMysqlInterface(){
-		glog.Error("coinDataPullUtil.InitMysqlInterface failed!")
-		return
-	}
+	//var confPath string
+	//flag.StringVar(&confPath, "conf", "./", "If non-empty, load config file in this directory")
+	//
+	//flag.Parse()
+	//runtime.GOMAXPROCS(runtime.NumCPU())
+	//
+	//err := coinDataPullConfig.LoadConfigInfo(confPath)
+	//if nil != err{
+	//	glog.Error("config.LoadConfig failed!")
+	//	return
+	//}
+	//
+	//if !coinDataPullUtil.InitMysqlInterface(){
+	//	glog.Error("coinDataPullUtil.InitMysqlInterface failed!")
+	//	return
+	//}
 
 	//if !commonHandle.Init(){
 	//	glog.Error("commonHandle.Init failed!")
