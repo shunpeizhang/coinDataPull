@@ -42,7 +42,7 @@ func MACD(data [coinDataPullModel.MACD_CAL_MAX_COUNT]models.KLineData) ([coinDat
 		inReal[iPos] = data[iPos].Close
 	}
 
-	retCode := C.MACD(C.int(0), C.int(coinDataPullModel.MACD_CAL_MAX_COUNT - 1),
+	retCode := C.TA_MACD(C.int(0), C.int(coinDataPullModel.MACD_CAL_MAX_COUNT - 1),
 		(*C.double)(unsafe.Pointer(&inReal)),
 		C.int(12), C.int(26), C.int(9),
 		(*C.int)(unsafe.Pointer(&outBeg)),
