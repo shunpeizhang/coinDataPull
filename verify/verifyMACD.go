@@ -70,7 +70,7 @@ func VerifyMACD(){
 				}
 			}
 
-			if -1 == iStart || -1 == iByPos{
+			if -1 == iStart || -1 == iByPos || -1 == iSellPos{
 				iCurPos = iCurPos + coinDataPullModel.MACD_CAL_MAX_COUNT
 				break
 			}
