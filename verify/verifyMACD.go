@@ -30,7 +30,7 @@ func VerifyMACD(){
 			glog.Error("ta_lib.MACD failed")
 			return
 		}
-		fmt.Println(outBeg)
+		fmt.Println(outBeg, len(outMACDHist))
 
 		//找到买入点
 		iByPos := -1
