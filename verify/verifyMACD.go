@@ -30,6 +30,7 @@ func VerifyMACD(){
 			glog.Error("ta_lib.MACD failed")
 			return
 		}
+		fmt.Println(outBeg)
 
 		//找到买入点
 		iByPos := -1
@@ -37,7 +38,7 @@ func VerifyMACD(){
 		for i := 0; 1 > i; i++{
 			iStart := -1
 
-			for iPos := outBeg; outNbElement + outBeg > iPos; iPos++{
+			for iPos := int32(0); outNbElement > iPos; iPos++{
 				if 0.00001 > outMACD[iPos] || 0.00001 > outMACDSignal[iPos]{
 					continue
 				}
@@ -60,7 +61,7 @@ func VerifyMACD(){
 				if outMACDHist[iPos] < outMACDHist[iPos - 1]{
 					iSellPos = int(iPos)
 					fmt.Println("============================================")
-					fmt.Println("iStart:", iStart, " iByPos:", iByPos, " iSellPos:", iSellPos)
+					fmt.Println("iCurPos", iCurPos, " iStart:", iStart, " iByPos:", iByPos, " iSellPos:", iSellPos)
 					fmt.Println("buyPrice:", dao.G_coinAllData.CoinData[iByPos].Close, " sellPrice:", dao.G_coinAllData.CoinData[iSellPos].Close)
 					fmt.Println("++++++++++++++++++++++++++++++++++++++++++++")
 
