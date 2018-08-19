@@ -29,7 +29,10 @@ const (
 
 )
 
-
+//
+const(
+	MACD_CAL_MAX_COUNT = 100
+)
 
 
 

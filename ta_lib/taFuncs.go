@@ -19,6 +19,7 @@ import (
 	"coinDataPull/thirdLib/huobiapi/models"
 	"unsafe"
 	"fmt"
+	"coinDataPull/coinDataPullModel"
 )
 
 func init(){
@@ -27,22 +28,21 @@ func init(){
 
 
 //return: macd, signal, hist
-func MACD(data []models.KLineData) ([]float64, []float64, []float64, error) {
+func MACD(data [coinDataPullModel.MACD_CAL_MAX_COUNT]models.KLineData) ([coinDataPullModel.MACD_CAL_MAX_COUNT]float64, [coinDataPullModel.MACD_CAL_MAX_COUNT]float64, [coinDataPullModel.MACD_CAL_MAX_COUNT]float64, int32, int32, error) {
 	var outBeg int32
 	var outNbElement int32
 	var ret int32
 
-	iDataLen := len(data)
-	outMACD := [iDataLen]float64{}
-	outMACDSignal := [iDataLen]float64{}
-	outMACDHist := [iDataLen]float64{}
+	outMACD := [coinDataPullModel.MACD_CAL_MAX_COUNT]float64{}
+	outMACDSignal := [coinDataPullModel.MACD_CAL_MAX_COUNT]float64{}
+	outMACDHist := [coinDataPullModel.MACD_CAL_MAX_COUNT]float64{}
 
-	inReal := [iDataLen]float64{}
-	for iPos := 0; iDataLen > iPos; iPos++{
+	inReal := [coinDataPullModel.MACD_CAL_MAX_COUNT]float64{}
+	for iPos := 0; coinDataPullModel.MACD_CAL_MAX_COUNT > iPos; iPos++{
 		inReal[iPos] = data[iPos].Close
 	}
 
-	C.ta_MACD(iDataLen, (*C.double)(unsafe.Pointer(&inReal)),
+	C.ta_MACD(C.int(coinDataPullModel.MACD_CAL_MAX_COUNT), (*C.double)(unsafe.Pointer(&inReal)),
 		(*C.double)(unsafe.Pointer(&outMACD)),
 		(*C.double)(unsafe.Pointer(&outMACDSignal)),
 		(*C.double)(unsafe.Pointer(&outMACDHist)),
@@ -53,7 +53,7 @@ func MACD(data []models.KLineData) ([]float64, []float64, []float64, error) {
 	fmt.Println(ret)
 	fmt.Println(outMACD)
 
-	return outMACD[0:], outMACDSignal[0:], outMACDHist[0:], nil
+	return outMACD, outMACDSignal, outMACDHist, outBeg, outNbElement, nil
 }
 
 

@@ -11,13 +11,14 @@ import (
 	"os"
 	"coinDataPull/ta_lib"
 	"coinDataPull/thirdLib/huobiapi/models"
+	"coinDataPull/coinDataPullModel"
 )
 
 
 func test(){
-	var data = [100]models.KLineData{}
+	var data = [coinDataPullModel.MACD_CAL_MAX_COUNT]models.KLineData{}
 
-	ta_lib.MACD(data[:])
+	ta_lib.MACD(data)
 
 	os.Exit(0)
 }
