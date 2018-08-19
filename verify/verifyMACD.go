@@ -58,7 +58,8 @@ func VerifyMACD(){
 					continue
 				}
 
-				if outMACDHist[iPos] < outMACDHist[iPos - 1]{
+				//if outMACDHist[iPos] < outMACDHist[iPos - 1]{
+				if outMACD[iPos] < outMACD[iPos - 1]{
 					iSellPos = int(iPos)
 					fmt.Println("============================================")
 					fmt.Println("iCurPos", iCurPos, " iStart:", iStart, " iByPos:", iByPos, " iSellPos:", iSellPos)
