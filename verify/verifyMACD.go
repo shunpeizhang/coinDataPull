@@ -7,6 +7,7 @@ import (
 	"coinDataPull/ta_lib"
 	"github.com/golang/glog"
 	"fmt"
+	"coinDataPull/dbInterface"
 )
 
 func VerifyMACD(){
@@ -65,6 +66,8 @@ func VerifyMACD(){
 					fmt.Println("iCurPos", iCurPos, " iStart:", iStart, " iByPos:", iByPos, " iSellPos:", iSellPos)
 					fmt.Println("buyPrice:", dao.G_coinAllData.CoinData[iByPos].Close, " sellPrice:", dao.G_coinAllData.CoinData[iSellPos].Close)
 					fmt.Println("++++++++++++++++++++++++++++++++++++++++++++")
+
+					dbInterface.Insert_testData(int32(iCurPos), int32(iCurPos + coinDataPullModel.MACD_CAL_MAX_COUNT))
 
 					iCurPos = iCurPos + iSellPos
 					break

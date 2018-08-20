@@ -44,7 +44,14 @@ func Select_CoinAllKLineData(tableName string, coinType int32) ([]models.KLineDa
 }
 
 
-
+func Insert_testData(start int32, stop int32){
+	sql := fmt.Sprintf("INSERT INTO coin_data.`test_data` VALUE(%v, %v)", start, stop)
+	_, err := coinDataPullUtil.GetMysqlDB().Exec(sql)
+	if nil != err{
+		glog.Error("Exec failed!", sql, err.Error())
+		return
+	}
+}
 
 
 

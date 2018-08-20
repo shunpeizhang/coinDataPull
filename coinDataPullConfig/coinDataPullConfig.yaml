@@ -1,5 +1,5 @@
 mysqlconfig:
-    host: 47.97.202.23
+    host: 172.16.101.37
     port: 3306
     username: root
     passwd: root
