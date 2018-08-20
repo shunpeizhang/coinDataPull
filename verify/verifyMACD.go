@@ -67,7 +67,12 @@ func VerifyMACD(){
 					fmt.Println("buyPrice:", dao.G_coinAllData.CoinData[iByPos].Close, " sellPrice:", dao.G_coinAllData.CoinData[iSellPos].Close)
 					fmt.Println("++++++++++++++++++++++++++++++++++++++++++++")
 
-					dbInterface.Insert_testData(int32(iCurPos), int32(iCurPos + coinDataPullModel.MACD_CAL_MAX_COUNT))
+					if 50 < iCurPos{
+						dbInterface.Insert_testData(int32(iCurPos - 50), int32(iCurPos + coinDataPullModel.MACD_CAL_MAX_COUNT - 50))
+					}else{
+						dbInterface.Insert_testData(int32(iCurPos), int32(iCurPos + coinDataPullModel.MACD_CAL_MAX_COUNT))
+					}
+
 
 					iCurPos = iCurPos + iSellPos
 					break
