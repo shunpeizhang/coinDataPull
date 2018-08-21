@@ -16,22 +16,22 @@ func Init() bool{
 
 	//添加定时处理
 	{
-		spec := fmt.Sprintf("* */1 * * * ?", coinDataPullModel.COINDATAGET_COUNTPRE / 60)
+		spec := fmt.Sprintf("* */1 * * * ?")
 		crontab.AddFunc(spec, coinDataPull_1min)
 
-		spec = fmt.Sprintf("0 */5 * * * ?", coinDataPullModel.COINDATAGET_COUNTPRE * 5 / 60)
+		spec = fmt.Sprintf("0 */5 * * * ?")
 		crontab.AddFunc(spec, coinDataPull_5min)
 
-		spec = fmt.Sprintf("0 */15 * * * ?", coinDataPullModel.COINDATAGET_COUNTPRE * 15 / 60 / 24)
+		spec = fmt.Sprintf("0 */15 * * * ?")
 		crontab.AddFunc(spec, coinDataPull_15min)
 
-		spec = fmt.Sprintf("0 */30 * * * ?", coinDataPullModel.COINDATAGET_COUNTPRE * 30 / 60 / 24)
+		spec = fmt.Sprintf("0 */30 * * * ?")
 		crontab.AddFunc(spec, coinDataPull_30min)
 
-		spec = fmt.Sprintf("0 0 */1 * * ?", coinDataPullModel.COINDATAGET_COUNTPRE * 60 / 60 / 24)
+		spec = fmt.Sprintf("0 0 */1 * * ?")
 		crontab.AddFunc(spec, coinDataPull_60min)
 
-		spec = fmt.Sprintf("0 0 0 */1 * ?", coinDataPullModel.COINDATAGET_COUNTPRE * 60 * 24 / 60 / 24 / 30)
+		spec = fmt.Sprintf("0 0 0 */1 * ?")
 		crontab.AddFunc(spec, coinDataPull_1day)
 	}
 
@@ -81,6 +81,7 @@ func coinDataPull_1day(){
 //处理数据获取
 func coinDataPull_commonHandle(coinSrcTimeType int32){
 	glog.Info("coinSrcTimeType:", coinSrcTimeType)
+	fmt.Println("coinSrcTimeType:", coinSrcTimeType)
 
 	needGetCount := coinDataPullModel.COINDATAGET_COUNTPRE * (1 + coinDataPullModel.COINDATAGET_DATAAddRATE)
 	for iCoinTye := coinDataPullModel.COINTYPE_BTC_USDT; coinDataPullModel.COINTYPE_MAX > iCoinTye; iCoinTye++{
