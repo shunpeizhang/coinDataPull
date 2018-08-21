@@ -38,6 +38,17 @@ func init(){
 
 	COINTYPE_NAME_MAP[coinDataPullModel.COINTYPE_BTC_USDT] = "btcusdt"
 	COINTYPE_NAME_MAP[coinDataPullModel.COINTYPE_ETH_USDT] = "ethusdt"
+	COINTYPE_NAME_MAP[coinDataPullModel.COINTYPE_BCH_USDT] = "bchusdt"
+	COINTYPE_NAME_MAP[coinDataPullModel.COINTYPE_ETC_USDT] = "etcusdt"
+	COINTYPE_NAME_MAP[coinDataPullModel.COINTYPE_LTC_USDT] = "ltcusdt"
+	COINTYPE_NAME_MAP[coinDataPullModel.COINTYPE_EOS_USDT] = "eosusdt"
+	COINTYPE_NAME_MAP[coinDataPullModel.COINTYPE_XRP_USDT] = "xrpusdt"
+	COINTYPE_NAME_MAP[coinDataPullModel.COINTYPE_OMG_USDT] = "omgusdt"
+	COINTYPE_NAME_MAP[coinDataPullModel.COINTYPE_DASH_USDT] = "dashusdt"
+	COINTYPE_NAME_MAP[coinDataPullModel.COINTYPE_ZEC_USDT] = "zecusdt"
+	COINTYPE_NAME_MAP[coinDataPullModel.COINTYPE_ADA_USDT] = "adausdt"
+	COINTYPE_NAME_MAP[coinDataPullModel.COINTYPE_STEEM_USDT] = "steemusdt"
+	COINTYPE_NAME_MAP[coinDataPullModel.COINTYPE_IOTA_USDT] = "iotausdt"
 
 	COINSRCTIMETYPE_TABLENAME_MAP[coinDataPullModel.COINSRCTIMETYPE_1MIN] = "tb_coinData_1min"
 	COINSRCTIMETYPE_TABLENAME_MAP[coinDataPullModel.COINSRCTIMETYPE_5MIN] = "tb_coinData_5min"

@@ -3,13 +3,12 @@ package  main
 
 import (
 	"time"
-	"coinDataPull/dao"
 	"flag"
 	"runtime"
 	"coinDataPull/coinDataPullConfig"
 	"github.com/golang/glog"
 	"coinDataPull/coinDataPullUtil"
-	"coinDataPull/verify"
+	"coinDataPull/commonHandle"
 )
 
 //
@@ -41,18 +40,17 @@ func main(){
 		return
 	}
 
-	//if !commonHandle.Init(){
-	//	glog.Error("commonHandle.Init failed!")
-	//	return
-	//}
-	//
-	//commonHandle.Start()
+	if !commonHandle.Init(){
+		glog.Error("commonHandle.Init failed!")
+		return
+	}
 
+	commonHandle.Start()
 
 
 	//test()
-	dao.Init()
-	verify.VerifyMACD()
+	//dao.Init()
+	//verify.VerifyMACD()
 
 	for true{
 		time.Sleep(time.Duration(1000 * 1000 * 1000 * 1000))

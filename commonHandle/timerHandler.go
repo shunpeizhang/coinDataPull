@@ -16,22 +16,22 @@ func Init() bool{
 
 	//添加定时处理
 	{
-		spec := fmt.Sprintf("0 0 */%v * * ?", coinDataPullModel.COINDATAGET_COUNTPRE / 60)
+		spec := fmt.Sprintf("* */1 * * * ?", coinDataPullModel.COINDATAGET_COUNTPRE / 60)
 		crontab.AddFunc(spec, coinDataPull_1min)
 
-		spec = fmt.Sprintf("0 0 */%v * * ?", coinDataPullModel.COINDATAGET_COUNTPRE * 5 / 60)
+		spec = fmt.Sprintf("0 */5 * * * ?", coinDataPullModel.COINDATAGET_COUNTPRE * 5 / 60)
 		crontab.AddFunc(spec, coinDataPull_5min)
 
-		spec = fmt.Sprintf("0 0 0 */%v * ?", coinDataPullModel.COINDATAGET_COUNTPRE * 15 / 60 / 24)
+		spec = fmt.Sprintf("0 */15 * * * ?", coinDataPullModel.COINDATAGET_COUNTPRE * 15 / 60 / 24)
 		crontab.AddFunc(spec, coinDataPull_15min)
 
-		spec = fmt.Sprintf("0 0 0 */%v * ?", coinDataPullModel.COINDATAGET_COUNTPRE * 30 / 60 / 24)
+		spec = fmt.Sprintf("0 */30 * * * ?", coinDataPullModel.COINDATAGET_COUNTPRE * 30 / 60 / 24)
 		crontab.AddFunc(spec, coinDataPull_30min)
 
-		spec = fmt.Sprintf("0 0 0 */%v * ?", coinDataPullModel.COINDATAGET_COUNTPRE * 60 / 60 / 24)
+		spec = fmt.Sprintf("0 0 */1 * * ?", coinDataPullModel.COINDATAGET_COUNTPRE * 60 / 60 / 24)
 		crontab.AddFunc(spec, coinDataPull_60min)
 
-		spec = fmt.Sprintf("0 0 0 0 */%v ?", coinDataPullModel.COINDATAGET_COUNTPRE * 60 * 24 / 60 / 24 / 30)
+		spec = fmt.Sprintf("0 0 0 */1 * ?", coinDataPullModel.COINDATAGET_COUNTPRE * 60 * 24 / 60 / 24 / 30)
 		crontab.AddFunc(spec, coinDataPull_1day)
 	}
 
