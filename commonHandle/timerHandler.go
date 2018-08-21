@@ -16,7 +16,7 @@ func Init() bool{
 
 	//添加定时处理
 	{
-		spec := fmt.Sprintf("* */1 * * * ?")
+		spec := fmt.Sprintf("0 */1 * * * ?")
 		crontab.AddFunc(spec, coinDataPull_1min)
 
 		spec = fmt.Sprintf("0 */5 * * * ?")
