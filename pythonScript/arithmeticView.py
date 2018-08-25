@@ -19,6 +19,7 @@ def paintBull(ax, total, pos, totalDataLen, open, high, low, close, t):
 #绘制k线
 def paintKLine(fig, total, pos, totalDataLen, open, high, low, close, t, isBull):
     ax = fig.add_subplot(total,1,pos)
+    ax.set_xlim(30, 100)
     if isBull:
         paintBull(ax, total, pos, totalDataLen, open, high, low, close, t)
 
@@ -35,6 +36,7 @@ def paintKLine(fig, total, pos, totalDataLen, open, high, low, close, t, isBull)
 def paintMACD(fig, total, pos, totalDataLen, open, high, low, close, t):
     macd, signal, hist = ta.MACD(close, fastperiod=12, slowperiod=26, signalperiod=9)
     ax = fig.add_subplot(total,1,pos)
+    ax.set_xlim(30, 100)
     ax.plot(range(0, totalDataLen), macd)
     ax.plot(range(0, totalDataLen), signal)
     ax.bar(range(0, 100), hist)
@@ -47,6 +49,7 @@ def paintRSI(fig, total, pos, totalDataLen, open, high, low, close, t):
     rsi3 = ta.RSI(close, 14)
 
     ax = fig.add_subplot(total,1,pos)
+    ax.set_xlim(30, 100)
     ax.plot(range(0, totalDataLen), rsi1)
     ax.plot(range(0, totalDataLen), rsi2)
     ax.plot(range(0, totalDataLen), rsi3)

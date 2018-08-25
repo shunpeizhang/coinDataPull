@@ -1,6 +1,5 @@
 # -*-coding=utf-8-*-
 
-import pymysql
 import numpy as np
 
 #得到一定数量的open, high, low, close, id

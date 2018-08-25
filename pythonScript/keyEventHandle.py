@@ -6,17 +6,17 @@ import matplotlib.pyplot as plt
 import numpy as np
 
 import drawWave
-
+import configInfo
 
 g_pos = 0
 g_speed = 5
 
-g_fig = None
-g_conn = None
+g_conf = None
 
 def on_key_press(event):
     global g_pos
     global g_speed
+    global g_conf
     if 'left' == event.key or 'right' == event.key:
         if 'left' == event.key:
             if g_pos >= g_speed:
@@ -24,7 +24,7 @@ def on_key_press(event):
         else:
             g_pos = g_pos + g_speed
 
-        drawWave.drawAllWave(g_conn, g_fig, g_pos)
+        drawWave.drawAllWave(g_conf, g_pos)
 
     if  'up' == event.key or 'down' == event.key:
         if 'up' == event.key:
@@ -36,14 +36,13 @@ def on_key_press(event):
         print("speed:", g_speed)
 
 
-def Init(fig, conn):
-    global g_fig
-    global g_conn
-    g_fig = fig
-    g_conn = conn
+def Init(conf):
+    global g_conf
 
-    fig.canvas.mpl_disconnect(fig.canvas.manager.key_press_handler_id)#取消默认快捷键的注册
-    fig.canvas.mpl_connect('key_press_event', on_key_press)
+    g_conf = conf
+
+    conf.g_fig_kline.canvas.mpl_disconnect(conf.g_fig_kline.canvas.manager.key_press_handler_id)#取消默认快捷键的注册
+    conf.g_fig_kline.canvas.mpl_connect('key_press_event', on_key_press)
 
 
 
