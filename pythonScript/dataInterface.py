@@ -11,7 +11,7 @@ def getSomeData(mysqlConn, start, count):
     id = []
 
     cur = mysqlConn.cursor()
-    sql = "SELECT Open, High, Low, Close, ID FROM coin_data.`tb_coinData_15min` where coinType = 0 LIMIT %d, %d" % (start, count)
+    sql = "SELECT Open, High, Low, Close, ID FROM coin_data.`tb_coinData_60min` where coinType = 0 LIMIT %d, %d" % (start, count)
     count = cur.execute(sql)
     for i in range(0, count):
         data = cur.fetchone()

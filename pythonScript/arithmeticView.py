@@ -54,3 +54,17 @@ def paintRSI(fig, total, pos, totalDataLen, open, high, low, close, t):
     ax.plot(range(0, totalDataLen), rsi2)
     ax.plot(range(0, totalDataLen), rsi3)
     plt.legend(('5', '10', '14'))
+
+
+#绘制kdj
+def paintKDJ(fig, total, pos, totalDataLen, open, high, low, close, t):
+    k, d = ta.STOCH(high, low, close)
+    ax = fig.add_subplot(total,1,pos)
+    ax.set_xlim(30, 100)
+    ax.plot(range(0, totalDataLen), k)
+    ax.plot(range(0, totalDataLen), d)
+    plt.legend(('k', 'd'))
+
+
+
+

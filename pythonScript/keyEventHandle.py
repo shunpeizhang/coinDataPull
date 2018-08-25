@@ -34,7 +34,7 @@ def on_key_press(event):
                 g_speed = g_speed - 5
 
         print("speed:", g_speed)
-
+        print("g_pos:", g_pos)
 
 def Init(conf):
     global g_conf
