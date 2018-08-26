@@ -12,7 +12,7 @@ func Init(){
 
 //由外部总控制驱动运行
 func Heartbeat(curPoint int64){
-
+	
 }
 
 
