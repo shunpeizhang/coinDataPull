@@ -153,7 +153,7 @@ func KDJ(data *[coinDataPullModel.MACD_CAL_MAX_COUNT]models.KLineData, stKDJResu
 		inClose[iPos] = data[iPos].Close
 	}
 
-	retCode := C.STOCH(C.int(0), C.int(coinDataPullModel.MACD_CAL_MAX_COUNT - 1),
+	retCode := C.TA_STOCH(C.int(0), C.int(coinDataPullModel.MACD_CAL_MAX_COUNT - 1),
 		(*C.double)(unsafe.Pointer(&inHigh)),(*C.double)(unsafe.Pointer(&inLow)),(*C.double)(unsafe.Pointer(&inClose)),
 		C.int(5),C.int(3),C.int(0),C.int(3),C.int(0),
 		(*C.int)(unsafe.Pointer(&stKDJResultInfo.OutBeg)),
