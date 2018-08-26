@@ -2,11 +2,11 @@ package dao
 
 import (
 	"coinDataPull/thirdLib/huobiapi/models"
-	"coinDataPull/coinDataPullModel"
-	"coinDataPull/dbInterface"
-	"coinDataPull/coinDataPullConfig"
 	"github.com/golang/glog"
 	"fmt"
+	"coinDataPull/handleModules/baseModule/dbInterface"
+	"coinDataPull/handleModules/baseModule/coinDataPullConfig"
+	"coinDataPull/handleModules/baseModule/coinDataPullModel"
 )
 
 type STCoinAllData struct {

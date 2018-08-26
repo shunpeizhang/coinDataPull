@@ -5,9 +5,9 @@ import (
 	"time"
 	"flag"
 	"runtime"
-	"coinDataPull/coinDataPullConfig"
+	"coinDataPull/handleModules/baseModule/coinDataPullConfig"
 	"github.com/golang/glog"
-	"coinDataPull/coinDataPullUtil"
+	"coinDataPull/handleModules/baseModule/coinDataPullUtil"
 	"coinDataPull/commonHandle"
 )
 

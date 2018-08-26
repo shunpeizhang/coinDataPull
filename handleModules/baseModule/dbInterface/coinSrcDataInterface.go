@@ -3,8 +3,8 @@ package dbInterface
 import (
 	"coinDataPull/thirdLib/huobiapi/models"
 	"fmt"
-	"coinDataPull/coinDataPullUtil"
 	"github.com/golang/glog"
+	"coinDataPull/handleModules/baseModule/coinDataPullUtil"
 )
 
 

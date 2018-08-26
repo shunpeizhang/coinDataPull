@@ -5,7 +5,7 @@ import (
 	_ "github.com/go-sql-driver/mysql"
 	"fmt"
 	"github.com/golang/glog"
-	"coinDataPull/coinDataPullConfig"
+	"coinDataPull/handleModules/baseModuleles/baseModule/coinDataPullConfig"
 )
 
 var mysqlDB *sql.DB                         //mysql的客户端对象

@@ -1,13 +1,13 @@
 package verify
 
 import (
-	"coinDataPull/coinDataPullModel"
+	"coinDataPull/handleModules/baseModule/coinDataPullModel"
 	"coinDataPull/thirdLib/huobiapi/models"
-	"coinDataPull/dao"
-	"coinDataPull/ta_lib"
+	"coinDataPull/handleModules/baseModule/dao"
+	"coinDataPull/thirdLib/ta_lib"
 	"github.com/golang/glog"
 	"fmt"
-	"coinDataPull/dbInterface"
+	"coinDataPull/handleModules/baseModule/dbInterface"
 )
 
 func VerifyMACD(){

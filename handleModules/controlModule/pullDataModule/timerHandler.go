@@ -1,7 +1,7 @@
-package commonHandle
+package pullDataModule
 
 import (
-	"coinDataPull/coinDataPullModel"
+	"coinDataPull/handleModules/baseModule/coinDataPullModel"
 	"github.com/robfig/cron"
 	"fmt"
 	"github.com/golang/glog"
@@ -16,22 +16,22 @@ func Init() bool{
 
 	//添加定时处理
 	{
-		spec := fmt.Sprintf("0 */1 * * * ?")
+		spec := fmt.Sprintf("5 */1 * * * ?")
 		crontab.AddFunc(spec, coinDataPull_1min)
 
-		spec = fmt.Sprintf("0 */5 * * * ?")
+		spec = fmt.Sprintf("5 */5 * * * ?")
 		crontab.AddFunc(spec, coinDataPull_5min)
 
-		spec = fmt.Sprintf("0 */15 * * * ?")
+		spec = fmt.Sprintf("5 */15 * * * ?")
 		crontab.AddFunc(spec, coinDataPull_15min)
 
-		spec = fmt.Sprintf("0 */30 * * * ?")
+		spec = fmt.Sprintf("5 */30 * * * ?")
 		crontab.AddFunc(spec, coinDataPull_30min)
 
-		spec = fmt.Sprintf("0 0 */1 * * ?")
+		spec = fmt.Sprintf("5 0 */1 * * ?")
 		crontab.AddFunc(spec, coinDataPull_60min)
 
-		spec = fmt.Sprintf("0 0 0 */1 * ?")
+		spec = fmt.Sprintf("5 0 0 */1 * ?")
 		crontab.AddFunc(spec, coinDataPull_1day)
 	}
 

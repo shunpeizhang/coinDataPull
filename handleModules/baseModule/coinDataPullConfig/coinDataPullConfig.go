@@ -6,7 +6,7 @@ import (
 	"errors"
 	"gopkg.in/yaml.v2"
 	"github.com/golang/glog"
-	"coinDataPull/coinDataPullModel"
+	"coinDataPull/handleModules/baseModuleles/baseModule/coinDataPullModel"
 )
 
 //mysql配制

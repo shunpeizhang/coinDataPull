@@ -1,14 +1,14 @@
-package commonHandle
+package pullDataModule
 
 import (
 	"coinDataPull/thirdLib/huobiapi/services"
-	"coinDataPull/coinDataPullConfig"
+	"coinDataPull/handleModules/baseModule/coinDataPullConfig"
 	"github.com/golang/glog"
 	"github.com/syndtr/goleveldb/leveldb/errors"
 
 	"coinDataPull/thirdLib/huobiapi/models"
-	"coinDataPull/coinDataPullModel"
-	"coinDataPull/dbInterface"
+	"coinDataPull/handleModules/baseModule/coinDataPullModel"
+	"coinDataPull/handleModules/baseModule/dbInterface"
 )
 
 //处理某类型某时间的数据获取,并存储到数据库
