@@ -11,6 +11,17 @@ type KLineData struct {
 	Vol    float64 `json:"vol"`    // 成交额, 即SUM(每一笔成交价 * 该笔的成交数量)
 }
 
+func (this *KLineData) Reset(){
+	this.ID = 0
+	this.Amount = 0
+	this.Count = 0
+	this.Open = 0
+	this.Close = 0
+	this.Low = 0
+	this.High = 0
+	this.Vol = 0
+}
+
 type KLineReturn struct {
 	Status  string      `json:"status"`   // 请求处理结果, "ok"、"error"
 	Ts      int64       `json:"ts"`       // 响应生成时间点, 单位毫秒

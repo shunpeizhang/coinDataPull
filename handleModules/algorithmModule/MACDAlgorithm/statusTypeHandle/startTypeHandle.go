@@ -1,9 +1,12 @@
 package statusTypeHandle
 
-import "coinDataPull/handleModules/baseModule/coinDataPullModel"
+import (
+	"coinDataPull/handleModules/baseModule/coinDataPullModel"
+	"coinDataPull/handleModules/algorithmModule/MACDAlgorithm"
+)
 
 
-func CanStart(data *coinDataPullModel.STAllNormResultInfo) bool{
+func CanStart(data *MACDAlgorithm.STAllNormResultInfo) bool{
 
 	return false
 }

@@ -68,15 +68,26 @@ type STMACDAlgorithmInfo struct {
 
 	MACDAlgorithm_canBuyTypes map[int32]int32    //如果处理在MACDAlgorithmStatus_start，此容器存储已满足的条件
 	buyKlinePoint models.KLineData               //买入点的kline值
+	sellKlinePoint models.KLineData               //卖出点的kline值
 
 	startTimePoint int64                         //开始的时间点
 	buyTimePoint int64                           //买入的时间点
 	sellTimePoint int64                          //卖出的时间点
+
+	TableName string
+	CoinType int32
 }
 
 func (this *STMACDAlgorithmInfo) Reset(){
 	this.MACDAlgorithmStatus = MACDAlgorithmStatus_invalide
 	this.MACDAlgorithm_canBuyTypes = make(map[int32]int32)
+
+	this.startTimePoint = 0
+	this.buyTimePoint = 0
+	this.sellTimePoint = 0
+
+	this.buyKlinePoint.Reset()
+	this.sellKlinePoint.Reset()
 }
 
 
@@ -85,9 +96,9 @@ func (this *STMACDAlgorithmInfo) Reset(){
 type STAllNormResultInfo struct{
 	TimePoint int64                 //当前时间点
 
-	MacdInfo *coinDataPullModel.STMACDResultInfo
-	RsiInfo *coinDataPullModel.STRSIResultInfo
-	KdjInfo *coinDataPullModel.STKDJResultInfo
+	MacdInfo coinDataPullModel.STMACDResultInfo
+	RsiInfo coinDataPullModel.STRSIResultInfo
+	KdjInfo coinDataPullModel.STKDJResultInfo
 }
 
 

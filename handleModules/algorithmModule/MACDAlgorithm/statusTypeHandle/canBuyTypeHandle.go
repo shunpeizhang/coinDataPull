@@ -1,11 +1,14 @@
 package statusTypeHandle
 
-import "coinDataPull/handleModules/baseModule/coinDataPullModel"
+import (
+	"coinDataPull/handleModules/baseModule/coinDataPullModel"
+	"coinDataPull/handleModules/algorithmModule/MACDAlgorithm"
+)
 
 
 
 //判断买入条件是否达到要求
-func CanBuy(data *coinDataPullModel.STAllNormResultInfo) bool{
+func CanBuy(data *MACDAlgorithm.STAllNormResultInfo) bool{
 
 
 	return false

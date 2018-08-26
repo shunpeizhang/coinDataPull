@@ -1,8 +1,11 @@
 package statusTypeHandle
 
-import "coinDataPull/handleModules/baseModule/coinDataPullModel"
+import (
+	"coinDataPull/handleModules/baseModule/coinDataPullModel"
+	"coinDataPull/handleModules/algorithmModule/MACDAlgorithm"
+)
 
-func IsNeedReset(data *coinDataPullModel.STAllNormResultInfo) bool{
+func IsNeedReset(data *MACDAlgorithm.STAllNormResultInfo) bool{
 
 	return false
 }
