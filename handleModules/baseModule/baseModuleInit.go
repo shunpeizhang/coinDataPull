@@ -3,8 +3,8 @@ package baseModule
 import (
 	"coinDataPull/handleModules/baseModule/coinDataPullConfig"
 	"github.com/golang/glog"
-	"coinDataPull/handleModules/baseModule/coinDataPullUtil"
 	"errors"
+	"coinDataPull/commonUtil/coinDataPullUtil"
 )
 
 func Init(confPath string) error{

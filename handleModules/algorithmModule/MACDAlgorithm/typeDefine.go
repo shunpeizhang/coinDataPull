@@ -62,17 +62,25 @@ const (
 	MACDAlgorithm_sellType_max
 )
 
+//常量
+const (
+	WAVEDistanceDiff_MACD = 4      //表明MACD之前有交叉，到目前一直在维持需当前的间距值
+	WAVEDistanceDiff_RSI = 9       //表明RSI之前有交叉，到目前一直在维持需当前的间距值
+	WAVEDistanceDiff_KDJ = 7       //表明KDJ之前有交叉，到目前一直在维持需当前的间距值
+)
+
+
 //MACDAlgorithm处理用到的数据结构
 type STMACDAlgorithmInfo struct {
 	MACDAlgorithmStatus int32        //当前处理状态
 
 	MACDAlgorithm_canBuyTypes map[int32]int32    //如果处理在MACDAlgorithmStatus_start，此容器存储已满足的条件
-	buyKlinePoint models.KLineData               //买入点的kline值
-	sellKlinePoint models.KLineData               //卖出点的kline值
+	BuyKlinePoint models.KLineData               //买入点的kline值
+	SellKlinePoint models.KLineData               //卖出点的kline值
 
-	startTimePoint int64                         //开始的时间点
-	buyTimePoint int64                           //买入的时间点
-	sellTimePoint int64                          //卖出的时间点
+	StartTimePoint int64                         //开始的时间点
+	BuyTimePoint int64                           //买入的时间点
+	SellTimePoint int64                          //卖出的时间点
 
 	TableName string
 	CoinType int32
@@ -82,12 +90,12 @@ func (this *STMACDAlgorithmInfo) Reset(){
 	this.MACDAlgorithmStatus = MACDAlgorithmStatus_invalide
 	this.MACDAlgorithm_canBuyTypes = make(map[int32]int32)
 
-	this.startTimePoint = 0
-	this.buyTimePoint = 0
-	this.sellTimePoint = 0
+	this.StartTimePoint = 0
+	this.BuyTimePoint = 0
+	this.SellTimePoint = 0
 
-	this.buyKlinePoint.Reset()
-	this.sellKlinePoint.Reset()
+	this.BuyKlinePoint.Reset()
+	this.SellKlinePoint.Reset()
 }
 
 

@@ -1,7 +1,7 @@
-package MACDAlgorithm
+package MACDAlgorithmControl
 
 import (
-	"coinDataPull/handleModules/baseModule/coinDataPullUtil"
+	"coinDataPull/commonUtil/coinDataPullUtil"
 	"github.com/golang/glog"
 	"errors"
 	"coinDataPull/handleModules/baseModule/dbInterface"
@@ -10,9 +10,10 @@ import (
 	"coinDataPull/handleModules/algorithmModule/MACDAlgorithm/statusTypeHandle"
 	"coinDataPull/thirdLib/huobiapi/models"
 	"fmt"
+	"coinDataPull/handleModules/algorithmModule/MACDAlgorithm"
 )
 
-var stMACDAlgorithmInfo STMACDAlgorithmInfo
+var stMACDAlgorithmInfo MACDAlgorithm.STMACDAlgorithmInfo
 
 
 func Init(tableName string, coinType int32){
@@ -42,14 +43,14 @@ func Heartbeat(curPoint int64) error{
 	iMaxCount := 10
 	for 0 < iMaxCount{
 		iMaxCount = iMaxCount - 1
-		if MACDAlgorithmStatus_invalide == stMACDAlgorithmInfo.MACDAlgorithmStatus{
+		if MACDAlgorithm.MACDAlgorithmStatus_invalide == stMACDAlgorithmInfo.MACDAlgorithmStatus{
 			//检测是否可以开始
 			if statusTypeHandle.CanStart(stAllNormResultInfo){
-				stMACDAlgorithmInfo.MACDAlgorithmStatus = MACDAlgorithmStatus_start
-				stMACDAlgorithmInfo.startTimePoint = realTime
+				stMACDAlgorithmInfo.MACDAlgorithmStatus = MACDAlgorithm.MACDAlgorithmStatus_start
+				stMACDAlgorithmInfo.StartTimePoint = realTime
 				continue
 			}
-		}else if MACDAlgorithmStatus_start == stMACDAlgorithmInfo.MACDAlgorithmStatus{
+		}else if MACDAlgorithm.MACDAlgorithmStatus_start == stMACDAlgorithmInfo.MACDAlgorithmStatus{
 			//检测是否重置
 			if statusTypeHandle.IsNeedReset(stAllNormResultInfo){
 				stMACDAlgorithmInfo.Reset()
@@ -58,29 +59,30 @@ func Heartbeat(curPoint int64) error{
 
 			//检测是否可以买入
 			if statusTypeHandle.CanBuy(stAllNormResultInfo){
-				stMACDAlgorithmInfo.MACDAlgorithmStatus = MACDAlgorithmStatus_buy
-				stMACDAlgorithmInfo.buyTimePoint = realTime
-				stMACDAlgorithmInfo.buyKlinePoint = *lineData
+				stMACDAlgorithmInfo.MACDAlgorithmStatus = MACDAlgorithm.MACDAlgorithmStatus_buy
+				stMACDAlgorithmInfo.BuyTimePoint = realTime
+				stMACDAlgorithmInfo.BuyKlinePoint = *lineData
 				break
 			}
-		}else if MACDAlgorithmStatus_buy == stMACDAlgorithmInfo.MACDAlgorithmStatus{
+		}else if MACDAlgorithm.MACDAlgorithmStatus_buy == stMACDAlgorithmInfo.MACDAlgorithmStatus{
 			//是否过红线或可以卖出
 			if statusTypeHandle.IsRedLineOut(&stMACDAlgorithmInfo) || statusTypeHandle.CanSell(stAllNormResultInfo){
-				stMACDAlgorithmInfo.MACDAlgorithmStatus = MACDAlgorithmStatus_sell
-				stMACDAlgorithmInfo.sellTimePoint = realTime
-				stMACDAlgorithmInfo.sellKlinePoint = *lineData
+				stMACDAlgorithmInfo.MACDAlgorithmStatus = MACDAlgorithm.MACDAlgorithmStatus_sell
+				stMACDAlgorithmInfo.SellTimePoint = realTime
+				stMACDAlgorithmInfo.SellKlinePoint = *lineData
 
 				continue
 			}
-		}else if MACDAlgorithmStatus_sell == stMACDAlgorithmInfo.MACDAlgorithmStatus{
+		}else if MACDAlgorithm.MACDAlgorithmStatus_sell == stMACDAlgorithmInfo.MACDAlgorithmStatus{
 			//卖出
 			{
 				fmt.Println("sell ===================================================")
-				fmt.Println("startTimePoint: ", stMACDAlgorithmInfo.startTimePoint)
-				fmt.Println("buyKlinePoint: ", stMACDAlgorithmInfo.buyKlinePoint, " close:", stMACDAlgorithmInfo.buyKlinePoint.Close)
-				fmt.Println("sellTimePoint: ", stMACDAlgorithmInfo.sellTimePoint, " close:", stMACDAlgorithmInfo.sellKlinePoint.Close)
+				fmt.Println("startTimePoint: ", stMACDAlgorithmInfo.StartTimePoint)
+				fmt.Println("buyKlinePoint: ", stMACDAlgorithmInfo.BuyKlinePoint, " close:", stMACDAlgorithmInfo.BuyKlinePoint.Close)
+				fmt.Println("sellTimePoint: ", stMACDAlgorithmInfo.SellTimePoint, " close:", stMACDAlgorithmInfo.SellKlinePoint.Close)
 				fmt.Println("sell +++++++++++++++++++++++++++++++++++++++++++++++++++")
 			}
+			os.Exit(1)
 
 			//重置
 			stMACDAlgorithmInfo.Reset()
@@ -98,7 +100,7 @@ func Heartbeat(curPoint int64) error{
 
 
 //得到指定时间点的指标数据
-func getTimePointNormData(curPoint int64) (*models.KLineData, *STAllNormResultInfo, error){
+func getTimePointNormData(curPoint int64) (*models.KLineData, *MACDAlgorithm.STAllNormResultInfo, error){
 	//得到此时间点的数据
 	lineData, err := dbInterface.Select_CoinDataByID(stMACDAlgorithmInfo.TableName, stMACDAlgorithmInfo.CoinType, curPoint)
 	if nil != err{
@@ -107,7 +109,7 @@ func getTimePointNormData(curPoint int64) (*models.KLineData, *STAllNormResultIn
 	}
 
 	//得到对应标准数据
-	stAllNormResultInfo := new(STAllNormResultInfo)
+	stAllNormResultInfo := new(MACDAlgorithm.STAllNormResultInfo)
 	{
 		//得到kline数据
 		datas, err := dbInterface.Select_CoinKLineDataByIDLimit(stMACDAlgorithmInfo.TableName, stMACDAlgorithmInfo.CoinType, curPoint)
@@ -122,6 +124,8 @@ func getTimePointNormData(curPoint int64) (*models.KLineData, *STAllNormResultIn
 			glog.Error(err.Error())
 			return nil, nil, err
 		}
+		fmt.Println("OutMACD:", stAllNormResultInfo.MacdInfo.OutMACD)
+		fmt.Println("OutMACDSignal:", stAllNormResultInfo.MacdInfo.OutMACDSignal)
 
 		//计算RSI
 		err = ta_lib.RSIAll(datas, &stAllNormResultInfo.RsiInfo)
@@ -129,6 +133,7 @@ func getTimePointNormData(curPoint int64) (*models.KLineData, *STAllNormResultIn
 			glog.Error(err.Error())
 			return nil, nil, err
 		}
+		fmt.Println("Rsi:", stAllNormResultInfo.RsiInfo.Rsi1.Rsi)
 
 		//计算KDJ
 		err = ta_lib.KDJ(datas, &stAllNormResultInfo.KdjInfo)
@@ -136,6 +141,9 @@ func getTimePointNormData(curPoint int64) (*models.KLineData, *STAllNormResultIn
 			glog.Error(err.Error())
 			return nil, nil, err
 		}
+		fmt.Println("k: ", stAllNormResultInfo.KdjInfo.K)
+		fmt.Println("D: ", stAllNormResultInfo.KdjInfo.D)
+		os.Exit(1)
 	}
 
 	return lineData, stAllNormResultInfo, nil

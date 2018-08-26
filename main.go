@@ -5,9 +5,9 @@ import (
 	"time"
 	"flag"
 	"runtime"
-	"coinDataPull/handleModules/controlModule/algorithmTestModel"
 	"coinDataPull/handleModules/baseModule"
 	"github.com/golang/glog"
+	"coinDataPull/handleModules/controlModule/algorithmTestModel"
 )
 
 func main(){
@@ -29,11 +29,6 @@ func main(){
 	//}
 	//
 	//pullDataModule.Start()
-
-
-	//test()
-	//dao.Init()
-	//verify.VerifyMACD()
 
 	algorithmTestModel.Init()
 	algorithmTestModel.RunTest()

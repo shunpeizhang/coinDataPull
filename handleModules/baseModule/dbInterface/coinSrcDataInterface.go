@@ -4,7 +4,7 @@ import (
 	"coinDataPull/thirdLib/huobiapi/models"
 	"fmt"
 	"github.com/golang/glog"
-	"coinDataPull/handleModules/baseModule/coinDataPullUtil"
+	"coinDataPull/commonUtil/coinDataPullUtil"
 	"errors"
 	"coinDataPull/handleModules/baseModule/coinDataPullModel"
 )
@@ -73,6 +73,7 @@ func Select_CoinKLineDataByIDLimit(tableName string, coinType int32, id int64) (
 		glog.Error("Query failed!", sql, err.Error())
 		return nil, err
 	}
+	fmt.Println(sql)
 
 	result := [coinDataPullModel.MACD_CAL_MAX_COUNT]models.KLineData{}
 	iPos := 0
