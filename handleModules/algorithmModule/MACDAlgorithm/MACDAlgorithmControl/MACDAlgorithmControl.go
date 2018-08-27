@@ -80,7 +80,7 @@ func Heartbeat(curPoint int64) error{
 			{
 				fmt.Println("sell ===================================================")
 				fmt.Println("startTimePoint: ", stMACDAlgorithmInfo.StartTimePoint)
-				fmt.Println("buyKlinePoint: ", stMACDAlgorithmInfo.BuyKlinePoint, " close:", stMACDAlgorithmInfo.BuyKlinePoint.Close)
+				fmt.Println("buyKlinePoint: ", stMACDAlgorithmInfo.BuyKlinePoint.ID, " close:", stMACDAlgorithmInfo.BuyKlinePoint.Close)
 				fmt.Println("sellTimePoint: ", stMACDAlgorithmInfo.SellTimePoint, " close:", stMACDAlgorithmInfo.SellKlinePoint.Close)
 				fmt.Println("resultValue: ", stMACDAlgorithmInfo.SellKlinePoint.Close - stMACDAlgorithmInfo.BuyKlinePoint.Close)
 				fmt.Println("resultRate: ", (stMACDAlgorithmInfo.SellKlinePoint.Close - stMACDAlgorithmInfo.BuyKlinePoint.Close) / stMACDAlgorithmInfo.BuyKlinePoint.Close)

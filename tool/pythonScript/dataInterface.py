@@ -12,7 +12,7 @@ def getSomeData(mysqlConn, start, count):
 
     cur = mysqlConn.cursor()
     #sql = "SELECT Open, High, Low, Close, ID FROM coin_data.`tb_coinData_60min` where coinType = 0 LIMIT %d, %d" % (start, count)
-    sql = "SELECT ID, Amount, COUNT, OPEN, CLOSE, Low, High, Vol FROM (SELECT ID, Amount, COUNT, OPEN, CLOSE, Low, High, Vol FROM coin_data.`tb_coinData_60min` WHERE ID <= 1527508800 AND coinType = 0 ORDER BY id DESC LIMIT 100) info ORDER BY ID"
+    sql = "SELECT Open, High, Low, Close, ID FROM (SELECT ID, Amount, COUNT, OPEN, CLOSE, Low, High, Vol FROM coin_data.`tb_coinData_60min` WHERE ID <= 1531184400 AND coinType = 0 ORDER BY id DESC LIMIT 100) info ORDER BY ID"
     count = cur.execute(sql)
     for i in range(0, count):
         data = cur.fetchone()
@@ -21,7 +21,8 @@ def getSomeData(mysqlConn, start, count):
         low.append(float(data[2]))
         close.append(float(data[3]))
         id.append(float(data[4]))
-        #print(data)
+
+    #print(close)
 
     return np.array(open), np.array(high), np.array(low), np.array(close), np.array(id)
 
