@@ -49,11 +49,11 @@ func handle_canBuyType_MACDMouthOpen(data *coinDataPullModel.STMACDResultInfo) b
 //MACDAlgorithm_canBuyType_RSIOk   RSI满足条件  之前有交叉，到目前一直在维持
 func handle_canBuyType_RSIOk(data *coinDataPullModel.STRSIResultInfo) bool{
 	if waveAnalyse.WaveAnalyse_IsCrossAndContinue(data.Rsi1.Rsi[:], data.Rsi2.Rsi[:], MACDAlgorithm.WAVEDistanceDiff_RSI){
-		fmt.Println("handle_canBuyType_MACDMouthOpen IsCross: =========================")
-		fmt.Println("OutMACD: ", data.Rsi1.Rsi)
-		fmt.Println("OutMACDSignal: ", data.Rsi2.Rsi)
-		fmt.Println("handle_canBuyType_MACDMouthOpen IsCross: +++++++++++++++++++++++++")
-		os.Exit(1)
+		//fmt.Println("handle_canBuyType_RSIOk IsCross: =========================")
+		//fmt.Println("Rsi1: ", data.Rsi1.Rsi)
+		//fmt.Println("Rsi2: ", data.Rsi2.Rsi)
+		//fmt.Println("handle_canBuyType_RSIOk IsCross: +++++++++++++++++++++++++")
+		//os.Exit(1)
 
 		return true
 	}
@@ -64,6 +64,12 @@ func handle_canBuyType_RSIOk(data *coinDataPullModel.STRSIResultInfo) bool{
 //MACDAlgorithm_canBuyType_KDJUpCross   KDJ满足条件  之前有交叉，到目前一直在维持
 func handle_canBuyType_KDJUpCross(data *coinDataPullModel.STKDJResultInfo) bool{
 	if waveAnalyse.WaveAnalyse_IsCrossAndContinue(data.K[:], data.D[:], MACDAlgorithm.WAVEDistanceDiff_KDJ){
+		fmt.Println("handle_canBuyType_KDJUpCross IsCross: =========================")
+		fmt.Println("k: ", data.K)
+		fmt.Println("d: ", data.D)
+		fmt.Println("handle_canBuyType_KDJUpCross IsCross: +++++++++++++++++++++++++")
+		os.Exit(1)
+
 		return true
 	}
 
@@ -74,6 +80,11 @@ func handle_canBuyType_KDJUpCross(data *coinDataPullModel.STKDJResultInfo) bool{
 func handle_canBuyType_RSISpeedRateOk(data *coinDataPullModel.STRSIResultInfo) bool{
 	//当前速率是否达到要求
 	if waveAnalyse.WaveAnalyse_speedRate(data.Rsi1.Rsi[:], 70){
+		fmt.Println("handle_canBuyType_RSISpeedRateOk IsCross: =========================")
+		fmt.Println("Rsi1: ", data.Rsi1.Rsi)
+		fmt.Println("handle_canBuyType_RSISpeedRateOk IsCross: +++++++++++++++++++++++++")
+		os.Exit(1)
+
 		return true
 	}
 
