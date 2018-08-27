@@ -27,6 +27,8 @@ func Init(tableName string, coinType int32){
 
 //由外部总控制驱动运行
 func Heartbeat(curPoint int64) error{
+	fmt.Println("Heartbeat: ", stMACDAlgorithmInfo)
+
 	//得到整点对应的时间
 	realTime := coinDataPullUtil.GetHourTime(curPoint)
 	if 60 <= curPoint - realTime{
