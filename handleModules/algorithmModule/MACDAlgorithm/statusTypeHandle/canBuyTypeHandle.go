@@ -4,8 +4,6 @@ import (
 	"coinDataPull/handleModules/baseModule/coinDataPullModel"
 	"coinDataPull/handleModules/algorithmModule/MACDAlgorithm"
 	"coinDataPull/handleModules/baseModule/waveAnalyse"
-	"fmt"
-	"os"
 )
 
 
@@ -78,10 +76,10 @@ func handle_canBuyType_KDJUpCross(data *coinDataPullModel.STKDJResultInfo) bool{
 func handle_canBuyType_RSISpeedRateOk(data *coinDataPullModel.STRSIResultInfo) bool{
 	//当前速率是否达到要求
 	if waveAnalyse.WaveAnalyse_speedRate(int(data.Rsi1.OutBeg), data.Rsi1.Rsi[:], 70){
-		fmt.Println("handle_canBuyType_RSISpeedRateOk IsCross: =========================")
-		fmt.Println("Rsi1: ", data.Rsi1.Rsi)
-		fmt.Println("handle_canBuyType_RSISpeedRateOk IsCross: +++++++++++++++++++++++++")
-		os.Exit(1)
+		//fmt.Println("handle_canBuyType_RSISpeedRateOk IsCross: =========================")
+		//fmt.Println("Rsi1: ", data.Rsi1.Rsi)
+		//fmt.Println("handle_canBuyType_RSISpeedRateOk IsCross: +++++++++++++++++++++++++")
+		//os.Exit(1)
 
 		return true
 	}
