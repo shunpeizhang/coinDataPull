@@ -4,12 +4,9 @@ import (
 	"coinDataPull/handleModules/baseModule/coinDataPullModel"
 	"coinDataPull/handleModules/algorithmModule/MACDAlgorithm"
 	"coinDataPull/handleModules/baseModule/waveAnalyse"
-	"fmt"
 )
 
 func CanSell(data *MACDAlgorithm.STAllNormResultInfo)bool{
-	fmt.Println("CanSell")
-
 	if handle_sellType_KDJCross(&data.KdjInfo) ||
 		handle_sellType_RSICross(&data.RsiInfo) ||
 		handle_sellType_MACDCross(&data.MacdInfo){
@@ -43,7 +40,7 @@ func handle_sellType_RSICross(data *coinDataPullModel.STRSIResultInfo) bool{
 //MACDAlgorithm_sellType_MACDCross
 func handle_sellType_MACDCross(data *coinDataPullModel.STMACDResultInfo) bool{
 	//从买入点开始到目前，只要出现交叉就算
-	if waveAnalyse.WaveAnalyse_IsCross(data.OutMACDSignal[:], data.OutMACDSignal[:], 0){
+	if waveAnalyse.WaveAnalyse_IsCross(data.OutMACD[:], data.OutMACDSignal[:], 0){
 		return true
 	}
 

@@ -64,11 +64,11 @@ func handle_canBuyType_RSIOk(data *coinDataPullModel.STRSIResultInfo) bool{
 //MACDAlgorithm_canBuyType_KDJUpCross   KDJ满足条件  之前有交叉，到目前一直在维持
 func handle_canBuyType_KDJUpCross(data *coinDataPullModel.STKDJResultInfo) bool{
 	if waveAnalyse.WaveAnalyse_IsCrossAndContinue(data.K[:], data.D[:], MACDAlgorithm.WAVEDistanceDiff_KDJ){
-		fmt.Println("handle_canBuyType_KDJUpCross IsCross: =========================")
-		fmt.Println("k: ", data.K)
-		fmt.Println("d: ", data.D)
-		fmt.Println("handle_canBuyType_KDJUpCross IsCross: +++++++++++++++++++++++++")
-		os.Exit(1)
+		//fmt.Println("handle_canBuyType_KDJUpCross IsCross: =========================")
+		//fmt.Println("k: ", data.K)
+		//fmt.Println("d: ", data.D)
+		//fmt.Println("handle_canBuyType_KDJUpCross IsCross: +++++++++++++++++++++++++")
+		//os.Exit(1)
 
 		return true
 	}
