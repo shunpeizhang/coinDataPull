@@ -114,6 +114,8 @@ func getTimePointNormData(curPoint int64) (*models.KLineData, *MACDAlgorithm.STA
 		return nil, nil, err
 	}
 
+	fmt.Println("getTimePointNormData begin1")
+
 	//得到对应标准数据
 	stAllNormResultInfo := new(MACDAlgorithm.STAllNormResultInfo)
 	{
@@ -123,6 +125,8 @@ func getTimePointNormData(curPoint int64) (*models.KLineData, *MACDAlgorithm.STA
 			glog.Error("dbInterface.Select_CoinDataByID failed! curPoint:", curPoint)
 			return nil, nil, err
 		}
+
+		fmt.Println("getTimePointNormData begin2")
 
 		//计算MACD
 		err = ta_lib.MACD(datas, &stAllNormResultInfo.MacdInfo)
