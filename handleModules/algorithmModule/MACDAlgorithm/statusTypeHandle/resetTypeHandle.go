@@ -5,7 +5,6 @@ import (
 	"coinDataPull/handleModules/algorithmModule/MACDAlgorithm"
 	"coinDataPull/handleModules/baseModule/waveAnalyse"
 	"fmt"
-	"os"
 )
 
 func IsNeedReset(data *MACDAlgorithm.STAllNormResultInfo) bool{
@@ -39,11 +38,11 @@ func handle_resetType_MACDAcross(data *coinDataPullModel.STMACDResultInfo) bool{
 func handle_resetType_RSIAcross(data *coinDataPullModel.STRSIResultInfo) bool{
 	//判断rsi5线交叉rsi10线
 	if waveAnalyse.WaveAnalyse_IsCross(data.Rsi1.Rsi[:], data.Rsi2.Rsi[:], -1){
-		fmt.Println("handle_resetType_RSIAcross IsCross: =========================")
-		fmt.Println("OutMACD: ", data.Rsi1.Rsi)
-		fmt.Println("OutMACDSignal: ", data.Rsi2.Rsi)
-		fmt.Println("handle_resetType_RSIAcross IsCross: +++++++++++++++++++++++++")
-		os.Exit(1)
+		//fmt.Println("handle_resetType_RSIAcross IsCross: =========================")
+		//fmt.Println("OutMACD: ", data.Rsi1.Rsi)
+		//fmt.Println("OutMACDSignal: ", data.Rsi2.Rsi)
+		//fmt.Println("handle_resetType_RSIAcross IsCross: +++++++++++++++++++++++++")
+		//os.Exit(1)
 
 		return true
 	}
