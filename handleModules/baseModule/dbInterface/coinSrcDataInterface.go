@@ -33,6 +33,7 @@ func Select_CoinAllKLineData(tableName string, coinType int32) ([]models.KLineDa
 		glog.Error("Query failed!", sql, err.Error())
 		return nil, err
 	}
+	defer rows.Close()
 
 	var result []models.KLineData
 	for rows.Next(){
@@ -41,7 +42,6 @@ func Select_CoinAllKLineData(tableName string, coinType int32) ([]models.KLineDa
 
 		result = append(result, data)
 	}
-	rows.Close()
 
 	return result, nil
 }
@@ -54,6 +54,7 @@ func Select_CoinDataByID(tableName string, coinType int32, id int64) (*models.KL
 		glog.Error("Query failed!", sql, err.Error())
 		return nil, err
 	}
+	defer rows.Close()
 
 	data := new(models.KLineData)
 	for rows.Next(){
@@ -61,7 +62,7 @@ func Select_CoinDataByID(tableName string, coinType int32, id int64) (*models.KL
 
 		return data, nil
 	}
-	rows.Close()
+
 
 	return nil, errors.New("not found!")
 }
@@ -76,6 +77,7 @@ func Select_CoinKLineDataByIDLimit(tableName string, coinType int32, id int64) (
 		glog.Error("Query failed!", sql, err.Error())
 		return nil, err
 	}
+	defer rows.Close()
 
 	result := [coinDataPullModel.MACD_CAL_MAX_COUNT]models.KLineData{}
 	iPos := 0
@@ -86,7 +88,6 @@ func Select_CoinKLineDataByIDLimit(tableName string, coinType int32, id int64) (
 		result[iPos] = data
 		iPos++
 	}
-	rows.Close()
 
 	if coinDataPullModel.MACD_CAL_MAX_COUNT != iPos{
 		glog.Error("coinDataPullModel.MACD_CAL_MAX_COUNT != iPos error!")
