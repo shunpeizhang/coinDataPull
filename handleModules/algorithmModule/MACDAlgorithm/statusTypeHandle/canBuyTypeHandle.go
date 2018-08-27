@@ -4,6 +4,8 @@ import (
 	"coinDataPull/handleModules/baseModule/coinDataPullModel"
 	"coinDataPull/handleModules/algorithmModule/MACDAlgorithm"
 	"coinDataPull/handleModules/baseModule/waveAnalyse"
+	"fmt"
+	"os"
 )
 
 
@@ -29,7 +31,13 @@ func CanBuy(data *MACDAlgorithm.STAllNormResultInfo) bool{
 func handle_canBuyType_MACDMouthOpen(data *coinDataPullModel.STMACDResultInfo) bool{
 	//是否macd值 - diff值达到要求
 	diff := data.OutMACD[coinDataPullModel.MACD_CAL_MAX_COUNT - 1] - data.OutMACDSignal[coinDataPullModel.MACD_CAL_MAX_COUNT - 1]
-	if 4 < diff{
+	if 4.0 < diff{
+		fmt.Println("handle_canBuyType_MACDMouthOpen IsCross: =========================")
+		fmt.Println("OutMACD: ", data.OutMACD)
+		fmt.Println("OutMACDSignal: ", data.OutMACDSignal)
+		fmt.Println("handle_canBuyType_MACDMouthOpen IsCross: +++++++++++++++++++++++++")
+		os.Exit(1)
+
 		return true
 	}
 
@@ -39,6 +47,12 @@ func handle_canBuyType_MACDMouthOpen(data *coinDataPullModel.STMACDResultInfo) b
 //MACDAlgorithm_canBuyType_RSIOk   RSI满足条件  之前有交叉，到目前一直在维持
 func handle_canBuyType_RSIOk(data *coinDataPullModel.STRSIResultInfo) bool{
 	if waveAnalyse.WaveAnalyse_IsCrossAndContinue(data.Rsi1.Rsi[:], data.Rsi2.Rsi[:], MACDAlgorithm.WAVEDistanceDiff_RSI){
+		fmt.Println("handle_canBuyType_MACDMouthOpen IsCross: =========================")
+		fmt.Println("OutMACD: ", data.Rsi1.Rsi)
+		fmt.Println("OutMACDSignal: ", data.Rsi2.Rsi)
+		fmt.Println("handle_canBuyType_MACDMouthOpen IsCross: +++++++++++++++++++++++++")
+		os.Exit(1)
+
 		return true
 	}
 

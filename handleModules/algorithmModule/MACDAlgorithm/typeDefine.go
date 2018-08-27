@@ -78,6 +78,7 @@ type STMACDAlgorithmInfo struct {
 	BuyKlinePoint models.KLineData               //买入点的kline值
 	SellKlinePoint models.KLineData               //卖出点的kline值
 
+	CurTimePoint int64                           //当前正处理的数据的时间点
 	StartTimePoint int64                         //开始的时间点
 	BuyTimePoint int64                           //买入的时间点
 	SellTimePoint int64                          //卖出的时间点
@@ -90,6 +91,7 @@ func (this *STMACDAlgorithmInfo) Reset(){
 	this.MACDAlgorithmStatus = MACDAlgorithmStatus_invalide
 	this.MACDAlgorithm_canBuyTypes = make(map[int32]int32)
 
+	this.CurTimePoint = 0
 	this.StartTimePoint = 0
 	this.BuyTimePoint = 0
 	this.SellTimePoint = 0

@@ -33,6 +33,7 @@ func Heartbeat(curPoint int64) error{
 		glog.Error("60 <= curPoint - realTime error!", curPoint, realTime)
 		return errors.New("60 <= curPoint - realTime error!")
 	}
+	stMACDAlgorithmInfo.CurTimePoint = realTime
 
 	//得到计算需要的数据
 	lineData, stAllNormResultInfo, err := getTimePointNormData(realTime)

@@ -4,6 +4,7 @@ import (
 	"coinDataPull/commonUtil/coinDataPullUtil"
 	"github.com/golang/glog"
 	"math"
+	"fmt"
 )
 
 /*
@@ -49,15 +50,62 @@ func WaveAnalyse_IsCross(first []float64, second []float64, isUp int8) bool{
 }
 
 /*
-	之前有交叉，到目前一直在维持
+	之前有交叉，到目前一直在维持, 不需要开口越来越大
 	first在second之上
-	diff为间距
+	diff为最后一个数据需要的y间距
 */
 func WaveAnalyse_IsCrossAndContinue(first []float64, second []float64, diff float64) bool{
 	dataLen := len(first)
 
 	if (first)[dataLen - 1] > (second)[dataLen - 1] && diff <= (first)[dataLen - 1] - (second)[dataLen - 1]{
 		return true
+	}
+
+	return false
+}
+
+/*
+	之前有交叉，到目前一直在维持, 不需要开口越来越大
+	first在second之上
+	disX为x间距
+*/
+func WaveAnalyse_IsCrossAndContinueByXDistance(first []float64, second []float64, disX int) bool{
+	dataLen := len(first)
+
+	if dataLen <= disX{
+		disX = dataLen - 1
+	}
+
+	for iPos := 0; disX > iPos; iPos++{
+		if (first)[dataLen - 1 - iPos] < (second)[dataLen - 1 - iPos]{
+			return false
+		}
+	}
+
+	return true
+}
+
+/*
+	之前有交叉，到目前一直在维持, 不需要开口越来越大
+	first在second之上
+	disX为x间距
+	disY为最后一个数据需要的y间距
+*/
+func WaveAnalyse_IsCrossAndContinueByXAndYDistance(first []float64, second []float64, disX int, disY float64) bool{
+	dataLen := len(first)
+
+	if dataLen <= disX{
+		disX = dataLen - 1
+	}
+
+	for iPos := 0; disX > iPos; iPos++{
+		if (first)[dataLen - 1 - iPos] < (second)[dataLen - 1 - iPos]{
+			return false
+		}
+	}
+
+	if disY > (first)[dataLen - 1] - (second)[dataLen - 1]{
+		return false
 	}
 
 	return true
@@ -80,6 +128,8 @@ func WaveAnalyse_speedRate(data []float64, degree float64) bool{
 		glog.Error(err.Error())
 		return false
 	}
+	fmt.Println("GetMaxAndMin ", "  max:", max, " min:", min)
+	fmt.Println("GetMaxAndMin ", "  data:", data)
 
 	//得到单位长度的对应值
 	unitValue := 10.0 / (max - min)
@@ -88,7 +138,8 @@ func WaveAnalyse_speedRate(data []float64, degree float64) bool{
 
 	//计算tan值
 	targetValue := math.Tan(3.14 * degree / 180.0)
-	if targetValue < yDistance / xDistance{
+	if targetValue <= yDistance / xDistance{
+		fmt.Println("unitValue:", unitValue,  "  yDistance:", yDistance, " xDistance:", xDistance, " targetValue:", targetValue)
 		return true
 	}
 
