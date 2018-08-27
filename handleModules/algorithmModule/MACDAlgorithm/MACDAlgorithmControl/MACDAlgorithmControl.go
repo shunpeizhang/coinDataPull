@@ -128,7 +128,7 @@ func getTimePointNormData(curPoint int64) (*models.KLineData, *MACDAlgorithm.STA
 		moveArrayData(&stAllNormResultInfo.MacdInfo.OutMACD, int(stAllNormResultInfo.MacdInfo.OutBeg))
 		moveArrayData(&stAllNormResultInfo.MacdInfo.OutMACDSignal, int(stAllNormResultInfo.MacdInfo.OutBeg))
 		moveArrayData(&stAllNormResultInfo.MacdInfo.OutMACDHist, int(stAllNormResultInfo.MacdInfo.OutBeg))
-		fmt.Println("OutMACD:", stAllNormResultInfo.MacdInfo.OutMACD)
+		//fmt.Println("OutMACD:", stAllNormResultInfo.MacdInfo.OutMACD)
 		//fmt.Println("OutMACDSignal:", stAllNormResultInfo.MacdInfo.OutMACDSignal)
 
 		//计算RSI
@@ -150,9 +150,9 @@ func getTimePointNormData(curPoint int64) (*models.KLineData, *MACDAlgorithm.STA
 		}
 		moveArrayData(&stAllNormResultInfo.KdjInfo.K, int(stAllNormResultInfo.KdjInfo.OutBeg))
 		moveArrayData(&stAllNormResultInfo.KdjInfo.D, int(stAllNormResultInfo.KdjInfo.OutBeg))
-		fmt.Println("k: ", stAllNormResultInfo.KdjInfo.K)
+		//fmt.Println("k: ", stAllNormResultInfo.KdjInfo.K)
 		//fmt.Println("D: ", stAllNormResultInfo.KdjInfo.D)
-		os.Exit(1)
+		//os.Exit(1)
 	}
 
 	return lineData, stAllNormResultInfo, nil
