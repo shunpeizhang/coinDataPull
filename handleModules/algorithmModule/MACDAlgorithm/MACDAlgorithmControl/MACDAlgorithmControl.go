@@ -124,8 +124,8 @@ func getTimePointNormData(curPoint int64) (*models.KLineData, *MACDAlgorithm.STA
 			glog.Error(err.Error())
 			return nil, nil, err
 		}
-		fmt.Println("OutMACD:", stAllNormResultInfo.MacdInfo.OutMACD)
-		fmt.Println("OutMACDSignal:", stAllNormResultInfo.MacdInfo.OutMACDSignal)
+		//fmt.Println("OutMACD:", stAllNormResultInfo.MacdInfo.OutMACD)
+		//fmt.Println("OutMACDSignal:", stAllNormResultInfo.MacdInfo.OutMACDSignal)
 
 		//计算RSI
 		err = ta_lib.RSIAll(datas, &stAllNormResultInfo.RsiInfo)
@@ -133,7 +133,7 @@ func getTimePointNormData(curPoint int64) (*models.KLineData, *MACDAlgorithm.STA
 			glog.Error(err.Error())
 			return nil, nil, err
 		}
-		fmt.Println("Rsi:", stAllNormResultInfo.RsiInfo.Rsi1.Rsi)
+		//fmt.Println("Rsi:", stAllNormResultInfo.RsiInfo.Rsi1.Rsi)
 
 		//计算KDJ
 		err = ta_lib.KDJ(datas, &stAllNormResultInfo.KdjInfo)
@@ -141,9 +141,9 @@ func getTimePointNormData(curPoint int64) (*models.KLineData, *MACDAlgorithm.STA
 			glog.Error(err.Error())
 			return nil, nil, err
 		}
-		fmt.Println("k: ", stAllNormResultInfo.KdjInfo.K)
-		fmt.Println("D: ", stAllNormResultInfo.KdjInfo.D)
-		os.Exit(1)
+		//fmt.Println("k: ", stAllNormResultInfo.KdjInfo.K)
+		//fmt.Println("D: ", stAllNormResultInfo.KdjInfo.D)
+		//os.Exit(1)
 	}
 
 	return lineData, stAllNormResultInfo, nil
