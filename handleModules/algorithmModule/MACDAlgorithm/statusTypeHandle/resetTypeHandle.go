@@ -21,11 +21,11 @@ func IsNeedReset(data *MACDAlgorithm.STAllNormResultInfo) bool{
 func handle_resetType_MACDAcross(data *coinDataPullModel.STMACDResultInfo) bool{
 	//判断macd线交叉diff线
 	if waveAnalyse.WaveAnalyse_IsCross(data.OutMACD[:], data.OutMACDSignal[:], -1){
-		fmt.Println("handle_resetType_MACDAcross IsCross: =========================")
-		fmt.Println("OutMACD: ", data.OutMACD)
-		fmt.Println("OutMACDSignal: ", data.OutMACDSignal)
-		fmt.Println("handle_resetType_MACDAcross IsCross: +++++++++++++++++++++++++")
-		os.Exit(1)
+		//fmt.Println("handle_resetType_MACDAcross IsCross: =========================")
+		//fmt.Println("OutMACD: ", data.OutMACD)
+		//fmt.Println("OutMACDSignal: ", data.OutMACDSignal)
+		//fmt.Println("handle_resetType_MACDAcross IsCross: +++++++++++++++++++++++++")
+		//os.Exit(1)
 
 		return true
 	}
