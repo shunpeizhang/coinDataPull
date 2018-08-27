@@ -12,8 +12,6 @@ import (
 
 //判断买入条件是否达到要求
 func CanBuy(data *MACDAlgorithm.STAllNormResultInfo) bool{
-	fmt.Println("CanBuy")
-
 	if handle_canBuyType_MACDMouthOpen(&data.MacdInfo) &&
 		handle_canBuyType_RSIOk(&data.RsiInfo) &&
 		handle_canBuyType_KDJUpCross(&data.KdjInfo) &&
@@ -79,7 +77,7 @@ func handle_canBuyType_KDJUpCross(data *coinDataPullModel.STKDJResultInfo) bool{
 //MACDAlgorithm_canBuyType_RSISpeedRateOk
 func handle_canBuyType_RSISpeedRateOk(data *coinDataPullModel.STRSIResultInfo) bool{
 	//当前速率是否达到要求
-	if waveAnalyse.WaveAnalyse_speedRate(data.Rsi1.Rsi[:], 70){
+	if waveAnalyse.WaveAnalyse_speedRate(int(data.Rsi1.OutBeg), data.Rsi1.Rsi[:], 70){
 		fmt.Println("handle_canBuyType_RSISpeedRateOk IsCross: =========================")
 		fmt.Println("Rsi1: ", data.Rsi1.Rsi)
 		fmt.Println("handle_canBuyType_RSISpeedRateOk IsCross: +++++++++++++++++++++++++")

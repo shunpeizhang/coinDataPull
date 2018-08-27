@@ -71,7 +71,7 @@ func Select_CoinDataByID(tableName string, coinType int32, id int64) (*models.KL
 func Select_CoinKLineDataByIDLimit(tableName string, coinType int32, id int64) (*[coinDataPullModel.MACD_CAL_MAX_COUNT]models.KLineData, error){
 	sql := fmt.Sprintf("SELECT ID, Amount, COUNT, OPEN, CLOSE, Low, High, Vol FROM (SELECT ID, Amount, COUNT, OPEN, CLOSE, Low, High, Vol FROM coin_data.`%v` WHERE ID <= %v AND coinType = %v ORDER BY id DESC LIMIT %v) info ORDER BY ID",
 		tableName, id, coinType, coinDataPullModel.MACD_CAL_MAX_COUNT)
-	fmt.Println(sql)
+	//fmt.Println(sql)
 	rows, err := coinDataPullUtil.GetMysqlDB().Query(sql)
 	if nil != err{
 		glog.Error("Query failed!", sql, err.Error())

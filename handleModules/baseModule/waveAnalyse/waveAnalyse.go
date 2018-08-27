@@ -119,11 +119,11 @@ func WaveAnalyse_IsCrossAndContinueByXAndYDistance(first []float64, second []flo
 degree是度数
 
 */
-func WaveAnalyse_speedRate(data []float64, degree float64) bool{
+func WaveAnalyse_speedRate(dataStartPos int, data []float64, degree float64) bool{
 	dataLen := len(data)
 
 	//得到最大最小值
-	max, min, err := coinDataPullUtil.GetMaxAndMin(data)
+	max, min, err := coinDataPullUtil.GetMaxAndMin(dataStartPos, data)
 	if nil != err{
 		glog.Error(err.Error())
 		return false

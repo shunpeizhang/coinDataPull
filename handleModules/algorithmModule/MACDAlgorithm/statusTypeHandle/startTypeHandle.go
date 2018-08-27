@@ -4,13 +4,10 @@ import (
 	"coinDataPull/handleModules/baseModule/coinDataPullModel"
 	"coinDataPull/handleModules/algorithmModule/MACDAlgorithm"
 	"coinDataPull/handleModules/baseModule/waveAnalyse"
-	"fmt"
 )
 
 
 func CanStart(data *MACDAlgorithm.STAllNormResultInfo) bool{
-	fmt.Println("CanStart")
-
 	return handle_canStart_MACDCross(&data.MacdInfo)
 }
 

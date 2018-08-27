@@ -27,8 +27,6 @@ func Init(tableName string, coinType int32){
 
 //由外部总控制驱动运行
 func Heartbeat(curPoint int64) error{
-	fmt.Println("Heartbeat: ", stMACDAlgorithmInfo)
-
 	//得到整点对应的时间
 	realTime := coinDataPullUtil.GetHourTime(curPoint)
 	if 60 <= curPoint - realTime{
@@ -105,16 +103,12 @@ func Heartbeat(curPoint int64) error{
 
 //得到指定时间点的指标数据
 func getTimePointNormData(curPoint int64) (*models.KLineData, *MACDAlgorithm.STAllNormResultInfo, error){
-	fmt.Println("getTimePointNormData begin")
-
 	//得到此时间点的数据
 	lineData, err := dbInterface.Select_CoinDataByID(stMACDAlgorithmInfo.TableName, stMACDAlgorithmInfo.CoinType, curPoint)
 	if nil != err{
 		glog.Error("dbInterface.Select_CoinDataByID failed! curPoint:", curPoint)
 		return nil, nil, err
 	}
-
-	fmt.Println("getTimePointNormData begin1")
 
 	//得到对应标准数据
 	stAllNormResultInfo := new(MACDAlgorithm.STAllNormResultInfo)
@@ -125,8 +119,6 @@ func getTimePointNormData(curPoint int64) (*models.KLineData, *MACDAlgorithm.STA
 			glog.Error("dbInterface.Select_CoinDataByID failed! curPoint:", curPoint)
 			return nil, nil, err
 		}
-
-		fmt.Println("getTimePointNormData begin2")
 
 		//计算MACD
 		err = ta_lib.MACD(datas, &stAllNormResultInfo.MacdInfo)
@@ -163,8 +155,6 @@ func getTimePointNormData(curPoint int64) (*models.KLineData, *MACDAlgorithm.STA
 		//fmt.Println("D: ", stAllNormResultInfo.KdjInfo.D)
 		//os.Exit(1)
 	}
-
-	fmt.Println("getTimePointNormData end")
 
 	return lineData, stAllNormResultInfo, nil
 }

@@ -2,13 +2,10 @@ package statusTypeHandle
 
 import (
 	"coinDataPull/handleModules/algorithmModule/MACDAlgorithm"
-	"fmt"
 )
 
 //是否已经越过红线，需要卖出
 func IsRedLineOut(data *MACDAlgorithm.STMACDAlgorithmInfo) bool{
-	fmt.Println("IsRedLineOut")
-
 	return false
 }
 

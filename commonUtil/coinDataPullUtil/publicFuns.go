@@ -15,7 +15,7 @@ func GetHourTime(timePoint int64) int64{
 }
 
 //得到数据中的最大值与最小值 (max, min, error)
-func GetMaxAndMin(data []float64) (float64, float64, error){
+func GetMaxAndMin(startPos int, data []float64) (float64, float64, error){
 	dataLen := len(data)
 	if 0 == dataLen{
 		return 0, 0, errors.New("0 == dataLen")
@@ -23,7 +23,7 @@ func GetMaxAndMin(data []float64) (float64, float64, error){
 
 	var max, min float64
 	isInit := false
-	for iPos := 0; dataLen > iPos; iPos++{
+	for iPos := startPos; dataLen > iPos; iPos++{
 		if !isInit{
 			max = (data)[iPos]
 			min = (data)[iPos]

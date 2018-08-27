@@ -4,12 +4,9 @@ import (
 	"coinDataPull/handleModules/baseModule/coinDataPullModel"
 	"coinDataPull/handleModules/algorithmModule/MACDAlgorithm"
 	"coinDataPull/handleModules/baseModule/waveAnalyse"
-	"fmt"
 )
 
 func IsNeedReset(data *MACDAlgorithm.STAllNormResultInfo) bool{
-	fmt.Println("IsNeedReset")
-
 	if handle_resetType_MACDAcross(&data.MacdInfo) || handle_resetType_RSIAcross(&data.RsiInfo){
 		return true
 	}
