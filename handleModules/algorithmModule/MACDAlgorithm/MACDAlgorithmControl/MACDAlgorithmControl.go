@@ -11,6 +11,7 @@ import (
 	"coinDataPull/thirdLib/huobiapi/models"
 	"fmt"
 	"coinDataPull/handleModules/algorithmModule/MACDAlgorithm"
+	"coinDataPull/handleModules/baseModule/coinDataPullModel"
 )
 
 var stMACDAlgorithmInfo MACDAlgorithm.STMACDAlgorithmInfo
@@ -124,7 +125,10 @@ func getTimePointNormData(curPoint int64) (*models.KLineData, *MACDAlgorithm.STA
 			glog.Error(err.Error())
 			return nil, nil, err
 		}
-		//fmt.Println("OutMACD:", stAllNormResultInfo.MacdInfo.OutMACD)
+		moveArrayData(&stAllNormResultInfo.MacdInfo.OutMACD, int(stAllNormResultInfo.MacdInfo.OutBeg))
+		moveArrayData(&stAllNormResultInfo.MacdInfo.OutMACDSignal, int(stAllNormResultInfo.MacdInfo.OutBeg))
+		moveArrayData(&stAllNormResultInfo.MacdInfo.OutMACDHist, int(stAllNormResultInfo.MacdInfo.OutBeg))
+		fmt.Println("OutMACD:", stAllNormResultInfo.MacdInfo.OutMACD)
 		//fmt.Println("OutMACDSignal:", stAllNormResultInfo.MacdInfo.OutMACDSignal)
 
 		//计算RSI
@@ -133,6 +137,9 @@ func getTimePointNormData(curPoint int64) (*models.KLineData, *MACDAlgorithm.STA
 			glog.Error(err.Error())
 			return nil, nil, err
 		}
+		moveArrayData(&stAllNormResultInfo.RsiInfo.Rsi1.Rsi, int(stAllNormResultInfo.RsiInfo.Rsi1.OutBeg))
+		moveArrayData(&stAllNormResultInfo.RsiInfo.Rsi2.Rsi, int(stAllNormResultInfo.RsiInfo.Rsi2.OutBeg))
+		moveArrayData(&stAllNormResultInfo.RsiInfo.Rsi3.Rsi, int(stAllNormResultInfo.RsiInfo.Rsi3.OutBeg))
 		//fmt.Println("Rsi:", stAllNormResultInfo.RsiInfo.Rsi1.Rsi)
 
 		//计算KDJ
@@ -141,15 +148,32 @@ func getTimePointNormData(curPoint int64) (*models.KLineData, *MACDAlgorithm.STA
 			glog.Error(err.Error())
 			return nil, nil, err
 		}
-		//fmt.Println("k: ", stAllNormResultInfo.KdjInfo.K)
+		moveArrayData(&stAllNormResultInfo.KdjInfo.K, int(stAllNormResultInfo.KdjInfo.OutBeg))
+		moveArrayData(&stAllNormResultInfo.KdjInfo.D, int(stAllNormResultInfo.KdjInfo.OutBeg))
+		fmt.Println("k: ", stAllNormResultInfo.KdjInfo.K)
 		//fmt.Println("D: ", stAllNormResultInfo.KdjInfo.D)
-		//os.Exit(1)
+		os.Exit(1)
 	}
 
 	return lineData, stAllNormResultInfo, nil
 }
 
+//将数组中的数据向后移一定位数
+func moveArrayData(data *[coinDataPullModel.MACD_CAL_MAX_COUNT]float64, moveCount int){
+	tmpData := [coinDataPullModel.MACD_CAL_MAX_COUNT]float64{}
 
+	for iPos := 0; coinDataPullModel.MACD_CAL_MAX_COUNT > iPos; iPos++{
+		tmpData[iPos] = data[iPos]
+	}
+
+	for iPos := 0; moveCount > iPos; iPos++{
+		data[iPos] = 0
+	}
+
+	for iPos := 0; coinDataPullModel.MACD_CAL_MAX_COUNT - moveCount > iPos; iPos++{
+		data[iPos + moveCount] = tmpData[iPos]
+	}
+}
 
 
 

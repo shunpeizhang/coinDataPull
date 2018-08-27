@@ -42,3 +42,14 @@ func GetMaxAndMin(data []float64) (float64, float64, error){
 }
 
 
+
+
+
+
+
+
+
+
+
+
+
