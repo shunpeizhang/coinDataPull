@@ -9,6 +9,8 @@ import (
 )
 
 func IsNeedReset(data *MACDAlgorithm.STAllNormResultInfo) bool{
+	fmt.Println("IsNeedReset")
+
 	if handle_resetType_MACDAcross(&data.MacdInfo) || handle_resetType_RSIAcross(&data.RsiInfo){
 		return true
 	}

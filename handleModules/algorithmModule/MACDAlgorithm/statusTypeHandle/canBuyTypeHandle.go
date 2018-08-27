@@ -12,6 +12,8 @@ import (
 
 //判断买入条件是否达到要求
 func CanBuy(data *MACDAlgorithm.STAllNormResultInfo) bool{
+	fmt.Println("CanBuy")
+
 	if handle_canBuyType_MACDMouthOpen(&data.MacdInfo) &&
 		handle_canBuyType_RSIOk(&data.RsiInfo) &&
 		handle_canBuyType_KDJUpCross(&data.KdjInfo) &&

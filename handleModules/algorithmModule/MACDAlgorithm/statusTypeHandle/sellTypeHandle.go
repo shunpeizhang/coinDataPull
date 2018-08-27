@@ -4,9 +4,12 @@ import (
 	"coinDataPull/handleModules/baseModule/coinDataPullModel"
 	"coinDataPull/handleModules/algorithmModule/MACDAlgorithm"
 	"coinDataPull/handleModules/baseModule/waveAnalyse"
+	"fmt"
 )
 
 func CanSell(data *MACDAlgorithm.STAllNormResultInfo)bool{
+	fmt.Println("CanSell")
+
 	if handle_sellType_KDJCross(&data.KdjInfo) ||
 		handle_sellType_RSICross(&data.RsiInfo) ||
 		handle_sellType_MACDCross(&data.MacdInfo){
