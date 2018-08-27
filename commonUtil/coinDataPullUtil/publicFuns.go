@@ -27,6 +27,7 @@ func GetMaxAndMin(data []float64) (float64, float64, error){
 		if !isInit{
 			max = (data)[iPos]
 			min = (data)[iPos]
+			isInit = true
 		}else{
 			if (data)[iPos] > max{
 				max = (data)[iPos]
