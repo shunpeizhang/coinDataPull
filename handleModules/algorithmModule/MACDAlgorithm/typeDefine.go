@@ -30,6 +30,7 @@ const(
 	MACDAlgorithm_canBuyType_RSIUpCross           //RSI满足条件  之前有交叉，到目前一直在维持
 	MACDAlgorithm_canBuyType_KDJUpCross           //kdj之前有个向上交叉  之前有交叉，到目前一直在维持
 	MACDAlgorithm_canBuyType_RSISpeedRateOk      //在购买点RSI的增长速率达到要求
+	MACDAlgorithm_canBuyType_RSILowMaxLimit      //RSI最大值设限
 
 	MACDAlgorithm_canBuyType_max
 )

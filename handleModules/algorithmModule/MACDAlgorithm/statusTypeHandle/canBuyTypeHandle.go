@@ -13,7 +13,8 @@ func CanBuy(data *MACDAlgorithm.STAllNormResultInfo) bool{
 	if handle_canBuyType_MACDMouthOpen(&data.MacdInfo) &&
 		handle_canBuyType_RSIOk(&data.RsiInfo) &&
 		handle_canBuyType_KDJUpCross(&data.KdjInfo) &&
-		handle_canBuyType_RSISpeedRateOk(&data.RsiInfo){
+		handle_canBuyType_RSISpeedRateOk(&data.RsiInfo)&&
+		handle_canBuyType_RSILowMaxLimit(&data.RsiInfo){
 			return true
 	}
 
@@ -87,6 +88,15 @@ func handle_canBuyType_RSISpeedRateOk(data *coinDataPullModel.STRSIResultInfo) b
 	return false
 }
 
+//MACDAlgorithm_canBuyType_RSILowMaxLimit
+func handle_canBuyType_RSILowMaxLimit(data *coinDataPullModel.STRSIResultInfo) bool{
+	dataLen := len(data.Rsi1.Rsi)
 
+	if 85 <= data.Rsi1.Rsi[dataLen - 1]{
+		return false
+	}
+
+	return true
+}
 
 
