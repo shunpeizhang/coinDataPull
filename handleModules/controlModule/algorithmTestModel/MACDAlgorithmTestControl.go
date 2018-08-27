@@ -6,7 +6,7 @@ import (
 )
 
 func Init(){
-	MACDAlgorithmControl.Init("tb_coinData_60min", 0)
+	MACDAlgorithmControl.Init("tb_coinData_30min", 0)
 }
 
 

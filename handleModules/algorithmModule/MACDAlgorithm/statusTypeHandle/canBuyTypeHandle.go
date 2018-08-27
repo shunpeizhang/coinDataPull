@@ -28,6 +28,8 @@ func CanBuy(data *MACDAlgorithm.STAllNormResultInfo) bool{
 
 //MACDAlgorithm_canBuyType_MACDMouthOpen
 func handle_canBuyType_MACDMouthOpen(data *coinDataPullModel.STMACDResultInfo) bool{
+	return true
+
 	//是否macd值 - diff值达到要求
 	diff := data.OutMACD[coinDataPullModel.MACD_CAL_MAX_COUNT - 1] - data.OutMACDSignal[coinDataPullModel.MACD_CAL_MAX_COUNT - 1]
 	if 4.0 < diff{
