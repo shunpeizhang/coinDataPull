@@ -105,6 +105,8 @@ func Heartbeat(curPoint int64) error{
 
 //得到指定时间点的指标数据
 func getTimePointNormData(curPoint int64) (*models.KLineData, *MACDAlgorithm.STAllNormResultInfo, error){
+	fmt.Println("getTimePointNormData begin")
+
 	//得到此时间点的数据
 	lineData, err := dbInterface.Select_CoinDataByID(stMACDAlgorithmInfo.TableName, stMACDAlgorithmInfo.CoinType, curPoint)
 	if nil != err{
@@ -157,6 +159,8 @@ func getTimePointNormData(curPoint int64) (*models.KLineData, *MACDAlgorithm.STA
 		//fmt.Println("D: ", stAllNormResultInfo.KdjInfo.D)
 		//os.Exit(1)
 	}
+
+	fmt.Println("getTimePointNormData end")
 
 	return lineData, stAllNormResultInfo, nil
 }
