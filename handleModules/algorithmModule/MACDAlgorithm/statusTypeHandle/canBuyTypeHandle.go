@@ -34,11 +34,11 @@ func handle_canBuyType_MACDMouthOpen(data *coinDataPullModel.STMACDResultInfo) b
 	//是否macd值 - diff值达到要求
 	diff := data.OutMACD[coinDataPullModel.MACD_CAL_MAX_COUNT - 1] - data.OutMACDSignal[coinDataPullModel.MACD_CAL_MAX_COUNT - 1]
 	if 4.0 < diff{
-		fmt.Println("handle_canBuyType_MACDMouthOpen IsCross: =========================")
-		fmt.Println("OutMACD: ", data.OutMACD)
-		fmt.Println("OutMACDSignal: ", data.OutMACDSignal)
-		fmt.Println("handle_canBuyType_MACDMouthOpen IsCross: +++++++++++++++++++++++++")
-		os.Exit(1)
+		//fmt.Println("handle_canBuyType_MACDMouthOpen IsCross: =========================")
+		//fmt.Println("OutMACD: ", data.OutMACD)
+		//fmt.Println("OutMACDSignal: ", data.OutMACDSignal)
+		//fmt.Println("handle_canBuyType_MACDMouthOpen IsCross: +++++++++++++++++++++++++")
+		//os.Exit(1)
 
 		return true
 	}
