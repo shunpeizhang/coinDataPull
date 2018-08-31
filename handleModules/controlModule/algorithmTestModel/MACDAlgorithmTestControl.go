@@ -15,7 +15,7 @@ func Init(){
 
 
 func RunTest(){
-	for iPos := int64(1527508800); 1535266800 > iPos; iPos = iPos + add_tick{
+	for iPos := int64(1530961200); 1535700600 > iPos; iPos = iPos + add_tick{
 	//for iPos := int64(1531004410); 1535266800 > iPos; iPos = iPos + 3600{
 		MACDAlgorithmControl.Heartbeat(iPos)
 	}
