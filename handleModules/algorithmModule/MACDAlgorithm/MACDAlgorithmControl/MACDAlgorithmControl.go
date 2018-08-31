@@ -194,7 +194,7 @@ func handle_MACDAlgorithmStatus_sell(){
 		fmt.Println("resultRate: ", (stMACDAlgorithmInfo.SellKlinePoint.Close - stMACDAlgorithmInfo.BuyKlinePoint.Close) / stMACDAlgorithmInfo.BuyKlinePoint.Close)
 		fmt.Println("sell +++++++++++++++++++++++++++++++++++++++++++++++++++")
 	}
-	//os.Exit(1)
+	os.Exit(1)
 
 	//重置
 	stMACDAlgorithmInfo.Reset()
