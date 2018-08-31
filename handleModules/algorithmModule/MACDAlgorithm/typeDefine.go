@@ -86,6 +86,9 @@ type STMACDAlgorithmInfo struct {
 
 	TableName string
 	CoinType int32
+
+	LineData *models.KLineData                   //当前处理的数据
+	StAllNormResultInfo *STAllNormResultInfo     //当前处理数据对应的norm信息
 }
 
 func (this *STMACDAlgorithmInfo) Reset(){
