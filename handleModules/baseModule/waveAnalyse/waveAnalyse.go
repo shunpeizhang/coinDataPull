@@ -4,6 +4,7 @@ import (
 	"coinDataPull/commonUtil/coinDataPullUtil"
 	"github.com/golang/glog"
 	"math"
+	"fmt"
 )
 
 /*
@@ -127,8 +128,8 @@ func WaveAnalyse_speedRate(dataStartPos int, data []float64, degree float64) boo
 		glog.Error(err.Error())
 		return false
 	}
-	//fmt.Println("GetMaxAndMin ", "  max:", max, " min:", min)
-	//fmt.Println("GetMaxAndMin ", "  data:", data)
+	fmt.Println("GetMaxAndMin ", "  max:", max, " min:", min)
+	fmt.Println("GetMaxAndMin ", "  data:", data)
 
 	//得到单位长度的对应值
 	unitValue := 10.0 / (max - min)
@@ -138,7 +139,7 @@ func WaveAnalyse_speedRate(dataStartPos int, data []float64, degree float64) boo
 	//计算tan值
 	targetValue := math.Tan(3.14 * degree / 180.0)
 	if targetValue <= yDistance / xDistance{
-		//fmt.Println("unitValue:", unitValue,  "  yDistance:", yDistance, " xDistance:", xDistance, " targetValue:", targetValue)
+		fmt.Println("unitValue:", unitValue,  "  yDistance:", yDistance, " xDistance:", xDistance, " targetValue:", targetValue)
 		return true
 	}
 
