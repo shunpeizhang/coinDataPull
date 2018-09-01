@@ -8,7 +8,6 @@ package ta_lib
 #include "ta_libc.h"
 
 */
-
 import "C"
 import (
 	"coinDataPull/thirdLib/huobiapi/models"

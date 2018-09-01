@@ -1,6 +1,5 @@
 package ta_lib
 
-import "C"
 import (
 	"coinDataPull/thirdLib/huobiapi/models"
 	"coinDataPull/handleModules/baseModule/coinDataPullModel"
