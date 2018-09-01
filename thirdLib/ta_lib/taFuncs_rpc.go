@@ -1,5 +1,13 @@
 package ta_lib
 
+//type STTaLibInfo struct {
+//
+//}
+//
+//func Init(){}
+
+
+
 
 /*
 #cgo CFLAGS: -I/usr/ta-lib/include/ta-lib
@@ -60,7 +68,7 @@ func (*STTaLibInfo)MACD(data *[coinDataPullModel.MACD_CAL_MAX_COUNT]models.KLine
 }
 
 //RSI
-func (*STTaLibInfo)RSI(dayCount int32, data *[coinDataPullModel.MACD_CAL_MAX_COUNT]models.KLineData, stRSIResultItemInfo *coinDataPullModel.STRSIResultItemInfo) (error){
+func (*STTaLibInfo)i_RSI(dayCount int32, data *[coinDataPullModel.MACD_CAL_MAX_COUNT]models.KLineData, stRSIResultItemInfo *coinDataPullModel.STRSIResultItemInfo) (error){
 	inReal := [coinDataPullModel.MACD_CAL_MAX_COUNT]float64{}
 	for iPos := 0; coinDataPullModel.MACD_CAL_MAX_COUNT > iPos; iPos++{
 		inReal[iPos] = data[iPos].Close
@@ -86,21 +94,21 @@ func (this *STTaLibInfo)RSIAll(data *[coinDataPullModel.MACD_CAL_MAX_COUNT]model
 	}
 
 	//5
-	err := this.RSI(5, data, &stRSIResultInfo.Rsi1)
+	err := this.i_RSI(5, data, &stRSIResultInfo.Rsi1)
 	if nil != err{
 		glog.Error("RSI 5 failed!")
 		return err
 	}
 
 	//10
-	err = this.RSI(10, data, &stRSIResultInfo.Rsi2)
+	err = this.i_RSI(10, data, &stRSIResultInfo.Rsi2)
 	if nil != err{
 		glog.Error("RSI 10 failed!")
 		return err
 	}
 
 	//14
-	err = this.RSI(14, data, &stRSIResultInfo.Rsi3)
+	err = this.i_RSI(14, data, &stRSIResultInfo.Rsi3)
 	if nil != err{
 		glog.Error("RSI 14 failed!")
 		return err
