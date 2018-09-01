@@ -23,6 +23,7 @@ import (
 	"coinDataPull/handleModules/baseModule/coinDataPullModel"
 	"github.com/golang/glog"
 	"errors"
+	"fmt"
 )
 
 func Init(){
@@ -47,7 +48,7 @@ func (*STTaLibInfo)MACD(data *[coinDataPullModel.MACD_CAL_MAX_COUNT]models.KLine
 		inReal[iPos] = data[iPos].Close
 	}
 
-	//fmt.Println("inReal:", inReal)
+	fmt.Println("inReal:", inReal)
 
 	retCode := C.TA_MACD(C.int(0), C.int(coinDataPullModel.MACD_CAL_MAX_COUNT - 1),
 		(*C.double)(unsafe.Pointer(&inReal)),
@@ -62,7 +63,7 @@ func (*STTaLibInfo)MACD(data *[coinDataPullModel.MACD_CAL_MAX_COUNT]models.KLine
 		return errors.New("C.TA_MACD failed!")
 	}
 
-	//fmt.Println("OutBeg:", stMACDResultInfo.OutBeg, " OutNbElement:", stMACDResultInfo.OutNbElement)
+	fmt.Println("OutBeg:", stMACDResultInfo.OutBeg, " OutNbElement:", stMACDResultInfo.OutNbElement)
 
 	return nil
 }
